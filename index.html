@@ -1,0 +1,1019 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lynnette Navarro · Tiny</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Portfolio de Lynnette Navarro (Tiny): dirección de fotografía, foto fija, creación de contenido, 1AC y 2AC. Madrid.">
+<script>document.documentElement.classList.add("js", "sealed"); if ("scrollRestoration" in history) history.scrollRestoration = "manual";</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@400;500&family=Pinyon+Script&display=swap">
+<link rel="preload" as="image" href="assets/web/seal.webp">
+<style>
+/* Layout: un sobre lacrado sobre la mesa ocupa toda la pantalla; al abrirlo, la carta doblada en tres sale, se despliega y se convierte en el primer folio. Los trabajos siguen en folios apilados. */
+:root {
+  --desk: #e3dbd3;        /* mesa de lino, gris rosado */
+  --desk-deep: #c9bdb2;
+  --paper: #fbf9f4;       /* papel de carta, más blanco y liso */
+  --env: #f2ece3;         /* papel del sobre, más cálido */
+  --ink: #2b1c1e;         /* tinta */
+  --ink-soft: #6b5557;
+  --wine: #8c1d2b;        /* burdeos del encaje y del forro */
+  --rose: #b25c6c;        /* rosa del lacre */
+  --line: #ddd2c6;
+
+  --f-script: "Pinyon Script", "Snell Roundhand", "Apple Chancery", cursive;
+  --f-serif: "Cormorant Garamond", "Cormorant", Garamond, "Times New Roman", serif;
+  --f-sans: "Jost", "Futura", "Century Gothic", "Segoe UI", sans-serif;
+
+  --p1r: 1.25;            /* proporción del primer folio: tres pliegues que caben en un sobre alargado */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='a'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .42 0 0 0 0 .34 0 0 0 0 .3 0 0 0 .17 0'/%3E%3C/filter%3E%3Cfilter id='b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.012 .6' numOctaves='2' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .42 0 0 0 0 .38 0 0 0 .11 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23a)'/%3E%3Crect width='100%25' height='100%25' filter='url(%23b)'/%3E%3C/svg%3E");
+  --page-shadow: 0 1px 1px rgba(60, 35, 30, .08), 0 10px 22px -10px rgba(60, 35, 30, .22), 0 34px 60px -30px rgba(60, 35, 30, .3);
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  color-scheme: light;
+}
+@media (max-width: 560px) { :root { --p1r: 2; } }
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scrollbar-gutter: stable; }
+html.sealed { overflow: hidden; }
+body {
+  margin: 0; min-height: 100vh;
+  color: var(--ink); font-family: var(--f-serif); font-size: 1.125rem; line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--desk);
+  background-image:
+    radial-gradient(ellipse at 50% 35%, transparent 40%, rgba(80, 50, 45, .16) 100%),
+    var(--grain),
+    repeating-linear-gradient(0deg, rgba(90, 60, 50, .016) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(90, 60, 50, .014) 0 1px, transparent 1px 4px);
+  background-attachment: fixed;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  overflow-x: hidden;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--wine); outline-offset: 4px; }
+
+/* ================= ESCENA DEL SOBRE ================= */
+.intro { display: none; }
+.js .intro {
+  position: fixed; inset: 0; z-index: 40; display: grid; place-items: center;
+  background: inherit; background-color: var(--desk);
+  background-image:
+    radial-gradient(ellipse at 50% 42%, transparent 35%, rgba(80, 50, 45, .2) 100%),
+    var(--grain),
+    repeating-linear-gradient(0deg, rgba(90, 60, 50, .016) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(90, 60, 50, .014) 0 1px, transparent 1px 4px);
+  padding: env(safe-area-inset-top, 0px) max(16px, env(safe-area-inset-right, 0px)) env(safe-area-inset-bottom, 0px) max(16px, env(safe-area-inset-left, 0px));
+}
+.env-wrap { display: grid; justify-items: center; gap: 34px; }
+.env { position: relative; width: min(780px, 90vw); aspect-ratio: 2 / 1; perspective: 2200px; container-type: inline-size; cursor: pointer; }
+.env::before { /* sombra sobre la mesa */
+  content: ""; position: absolute; inset: 1% .5% -.5% .5%; z-index: 0; border-radius: 6px;
+  box-shadow: 0 2px 2px rgba(60, 35, 30, .14), 0 16px 26px -10px rgba(60, 35, 30, .3), 0 46px 70px -34px rgba(60, 35, 30, .4);
+  transition: box-shadow .5s var(--ease);
+}
+.env:hover::before { box-shadow: 0 3px 3px rgba(60, 35, 30, .14), 0 22px 32px -10px rgba(60, 35, 30, .3), 0 60px 90px -34px rgba(60, 35, 30, .42); }
+.env::after { /* luz de ventana desde arriba a la izquierda */
+  content: ""; position: absolute; inset: 0; z-index: 8; pointer-events: none; border-radius: 4px;
+  background: linear-gradient(118deg, rgba(255, 255, 255, .22), transparent 42%, rgba(60, 30, 20, .06));
+}
+.e-back { position: absolute; inset: 0; z-index: 1; border-radius: 4px; background: var(--grain), linear-gradient(#ded3c5, #d3c6b6); }
+.e-back .liner { position: absolute; left: 3.5%; right: 3.5%; top: 3%; height: 62%; opacity: .9; box-shadow: inset 0 8px 14px rgba(40, 10, 15, .25); }
+.paper-env { background: var(--grain), linear-gradient(160deg, #f7f2ea, #ece4d8); }
+.pocket { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+.pk { position: absolute; inset: 0; filter: drop-shadow(0 0 .6px rgba(80, 55, 45, .4)) drop-shadow(0 -2px 3px rgba(80, 55, 45, .1)); }
+.pk i { position: absolute; inset: 0; display: block; border-radius: 4px; }
+.pk-l i { clip-path: url(#cp-left); background: var(--grain), linear-gradient(150deg, #f8f4ed, #ede6db); }
+.pk-r i { clip-path: url(#cp-right); background: var(--grain), linear-gradient(210deg, #eee7dc, #e2d8ca); }
+.pk-b i { clip-path: url(#cp-bottom); background: var(--grain), linear-gradient(to top, #e8dfd2, #f4eee5 70%); }
+
+.flap { position: absolute; left: 0; right: 0; top: 0; height: 60%; z-index: 5; transform-origin: 50% 0; transform-style: preserve-3d; }
+.fface { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.fface > i, .fface > b { position: absolute; inset: 0; display: block; clip-path: url(#cp-flap); }
+.ffront { filter: drop-shadow(0 1px .5px rgba(70, 45, 35, .3)) drop-shadow(0 5px 7px rgba(70, 45, 35, .14)); }
+.ffront > i { background: var(--grain), linear-gradient(to bottom, #f6f1e9, #ebe3d6); }
+.fback { transform: rotateX(180deg); }
+.fback > i { background: var(--grain), linear-gradient(#e7ddd0, #ddd2c3); }
+.fback > i.liner { clip-path: url(#cp-liner); }
+.shade { background: linear-gradient(to bottom, rgba(70, 40, 30, .05), rgba(70, 40, 30, .5)); opacity: 0; pointer-events: none; }
+.flap-name {
+  position: absolute; left: 0; right: 0; top: 15%; text-align: center;
+  font-family: var(--f-script); color: var(--wine); font-size: 7.4cqw; line-height: 1;
+}
+.flap-name small { display: block; margin-top: 1.6cqw; font-family: var(--f-sans); font-size: max(8px, 1.3cqw); letter-spacing: .34em; text-transform: uppercase; color: var(--ink-soft); }
+
+.seal {
+  position: absolute; left: 50%; top: 56%; width: 17%; z-index: 6; display: block;
+  transform: translate(-50%, -50%); border: 0; padding: 0; background: none; cursor: pointer;
+  filter: drop-shadow(0 2px 1px rgba(90, 20, 35, .35)) drop-shadow(0 8px 10px rgba(90, 20, 35, .28));
+  transition: filter .3s ease;
+}
+.seal:hover { filter: drop-shadow(0 2px 1px rgba(90, 20, 35, .35)) drop-shadow(0 12px 14px rgba(90, 20, 35, .32)); }
+.seal img { width: 100%; height: auto; }
+.seal-half { position: absolute; inset: 0; }
+.seal-half.l { clip-path: polygon(0 0, 53% 0, 48% 18%, 55% 34%, 47% 52%, 54% 70%, 49% 86%, 52% 100%, 0 100%); }
+.seal-half.r { clip-path: polygon(53% 0, 100% 0, 100% 100%, 52% 100%, 49% 86%, 54% 70%, 47% 52%, 55% 34%, 48% 18%); }
+.crumb { position: absolute; left: 50%; top: 50%; border-radius: 40%; background: radial-gradient(circle at 35% 30%, #e39aa8, #a24658); }
+
+.addr { position: absolute; z-index: 7; left: 7%; bottom: 11%; transform: rotate(-2deg); font-family: var(--f-script); color: var(--ink-soft); font-size: 3.4cqw; line-height: 1.15; pointer-events: none; }
+.addr small { display: block; font-family: var(--f-sans); font-size: max(7px, 1.1cqw); letter-spacing: .28em; text-transform: uppercase; }
+.sticker { position: absolute; z-index: 7; right: 6%; bottom: 10%; width: 11%; transform: rotate(5deg); text-decoration: none; }
+.sticker .stamp-in { padding: 9%; }
+.sticker .qr-box { padding: 6%; }
+
+.intro-foot { display: grid; justify-items: center; gap: 12px; text-align: center; }
+.hint { margin: 0; font-family: var(--f-sans); font-size: .72rem; letter-spacing: .28em; text-transform: uppercase; color: var(--ink-soft); transition: opacity .4s ease; }
+.hint::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--rose); margin-right: 12px; vertical-align: 1px; animation: pulse 1.8s ease-in-out infinite; }
+@keyframes pulse { 50% { transform: scale(1.7); opacity: .35; } }
+.skip { font-family: var(--f-sans); font-size: .64rem; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-soft); background: none; border: 0; border-bottom: 1px solid currentColor; padding: 2px 0; cursor: pointer; opacity: 0; pointer-events: none; transition: opacity .4s ease; }
+.opening .hint { opacity: 0; }
+.opening .skip { opacity: .8; pointer-events: auto; }
+.intro-corner { position: absolute; top: calc(18px + env(safe-area-inset-top, 0px)); font-family: var(--f-sans); font-size: .64rem; letter-spacing: .26em; text-transform: uppercase; color: var(--ink-soft); opacity: .75; margin: 0; }
+.intro-corner.l { left: max(20px, env(safe-area-inset-left, 0px)); }
+.intro-corner.r { right: max(20px, env(safe-area-inset-right, 0px)); text-align: right; }
+@media (max-width: 560px) { .intro-corner.r { display: none; } }
+
+.env > #p1 { filter: drop-shadow(0 -1px 1.5px rgba(60, 35, 30, .22)) drop-shadow(0 -4px 6px rgba(60, 35, 30, .08)); }
+.lift { position: fixed; inset: 0; z-index: 45; pointer-events: none; filter: drop-shadow(0 2px 2px rgba(50, 25, 25, .12)) drop-shadow(0 24px 30px rgba(50, 25, 25, .26)); }
+
+/* sello postal perforado */
+.stamp {
+  --r: 3px;
+  display: block; padding: calc(var(--r) + 1.5px); background: #fffdf9;
+  -webkit-mask: radial-gradient(circle, #0000 var(--r), #000 calc(var(--r) + .5px)) calc(var(--r) * -1.43) calc(var(--r) * -1.43) / calc(var(--r) * 2.86) calc(var(--r) * 2.86) round, linear-gradient(#000 0 0) content-box;
+          mask: radial-gradient(circle, #0000 var(--r), #000 calc(var(--r) + .5px)) calc(var(--r) * -1.43) calc(var(--r) * -1.43) / calc(var(--r) * 2.86) calc(var(--r) * 2.86) round, linear-gradient(#000 0 0) content-box;
+  filter: drop-shadow(0 1px 1.5px rgba(60, 30, 30, .3));
+}
+.stamp-in { position: relative; overflow: hidden; display: block; }
+.gingham {
+  background-color: #7d1a26;
+  background-image: linear-gradient(90deg, rgba(255, 210, 210, .22) 50%, transparent 50%), linear-gradient(rgba(255, 210, 210, .22) 50%, transparent 50%);
+  background-size: 9px 9px;
+}
+.qr-box { background: #fff; display: grid; place-items: center; }
+.qr-box svg { width: 100%; height: auto; display: block; }
+
+/* ================= PRIMER FOLIO: la carta en tres pliegues ================= */
+/* al leerla, la carta ocupa el mismo ancho que los demás folios; en el sobre va a un tamaño que cabe en pantalla */
+.p1-home { position: relative; width: 100%; aspect-ratio: 1 / var(--p1r); scroll-margin-top: 90px; }
+.sealed .folio > .page { opacity: 0; }
+#p1 { position: relative; width: 100%; aspect-ratio: 1 / var(--p1r); perspective: 2600px; container-type: inline-size; }
+.p1-home > #p1 { box-shadow: var(--page-shadow); }
+.panel { position: absolute; left: 0; width: 100%; height: calc(100% / 3); transform-style: preserve-3d; }
+.pb { top: calc(100% / 3); }
+.pc { top: calc(200% / 3); transform-origin: 50% 0; }
+.pa { top: 0; transform-origin: 50% 100%; }
+.face { position: absolute; inset: 0; overflow: hidden; backface-visibility: hidden; -webkit-backface-visibility: hidden; background: var(--grain), var(--paper); }
+.face.back { transform: rotateX(180deg); background: var(--grain), linear-gradient(#f8f5ef, #f1ece4); }
+.face .shade { position: absolute; inset: 0; clip-path: none; }
+.pb .front::before, .pc .front::before { /* marca del pliegue */
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 10px; pointer-events: none;
+  background: linear-gradient(to bottom, rgba(110, 80, 70, .1), rgba(255, 255, 255, .5) 1px, transparent 10px);
+}
+.cast { position: absolute; inset: 0; opacity: 0; pointer-events: none; }
+.cast-top { background: linear-gradient(to bottom, rgba(60, 35, 30, .5), transparent 70%); }
+.cast-bottom { background: linear-gradient(to top, rgba(60, 35, 30, .5), transparent 70%); }
+
+.lh { height: 100%; padding: 5.5cqw 7cqw 3cqw; display: grid; grid-template-rows: auto 1fr auto; gap: 1.5cqw; }
+.lh-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 3cqw; }
+.lh-name { font-family: var(--f-script); color: var(--wine); font-size: 7cqw; line-height: .95; margin: 0; white-space: nowrap; }
+.lh-sub { margin: 1.4cqw 0 0; font-style: italic; color: var(--ink-soft); font-size: max(12px, 2.3cqw); }
+.lh-meta { display: grid; justify-items: end; gap: 1.6cqw; text-align: right; font-family: var(--f-sans); font-size: max(8px, 1.35cqw); letter-spacing: .2em; text-transform: uppercase; color: var(--ink-soft); }
+.lh-meta .stamp { width: 9cqw; --r: 2.5px; transform: rotate(4deg); text-decoration: none; }
+.lh-meta .stamp-in { padding: 9%; }
+.lh-meta .qr-box { padding: 6%; }
+.lh-rule { height: 1px; background: var(--line); align-self: end; }
+.lh-roles { margin: 0; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1cqw 3cqw; font-family: var(--f-sans); font-size: max(8.5px, 1.5cqw); letter-spacing: .28em; text-transform: uppercase; color: var(--ink); }
+.lh-roles em { font-family: var(--f-serif); font-size: max(11px, 2cqw); letter-spacing: 0; text-transform: none; color: var(--ink-soft); }
+
+.greet { height: 100%; padding: 3.6cqw 7cqw 2.6cqw; display: grid; align-content: center; gap: 1.6cqw; }
+.greet .salute { margin: 0; font-family: var(--f-script); color: var(--wine); font-size: 5.2cqw; line-height: 1.05; }
+.greet p { margin: 0; font-size: max(12px, 2.2cqw); line-height: 1.5; max-width: 62ch; text-wrap: pretty; }
+.greet .ps { font-style: italic; color: var(--ink-soft); }
+
+.toc-wrap { height: 100%; padding: 3.4cqw 7cqw 3cqw; display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto 1fr; gap: 1.6cqw 5cqw; }
+.toc-label { grid-column: 1 / -1; margin: 0; font-family: var(--f-sans); font-size: max(8px, 1.3cqw); letter-spacing: .3em; text-transform: uppercase; color: var(--ink-soft); }
+.toc { list-style: none; margin: 0; padding: 0; display: grid; align-content: start; gap: .3cqw; }
+.toc a { display: flex; align-items: baseline; gap: 1.2cqw; text-decoration: none; font-size: max(13px, 2.4cqw); line-height: 1.55; }
+.toc a i { flex: 1; border-bottom: 1px dotted rgba(107, 85, 87, .5); transform: translateY(-.3em); }
+.toc a em { font-style: normal; font-family: var(--f-sans); font-size: max(8px, 1.3cqw); letter-spacing: .18em; text-transform: uppercase; color: var(--rose); font-variant-numeric: tabular-nums; }
+.toc a:hover span { color: var(--wine); }
+.sign { align-self: end; text-align: right; margin: 0; font-style: italic; color: var(--ink-soft); font-size: max(12px, 2cqw); }
+.sign b { display: block; font-family: var(--f-script); font-weight: 400; font-style: normal; color: var(--wine); font-size: 6.4cqw; line-height: 1; }
+@media (max-width: 560px) {
+  .toc-wrap { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto auto; }
+  .sign { text-align: left; }
+  .sign b { display: inline; margin-left: 6px; }
+}
+
+.outside { height: 100%; display: grid; place-content: center; justify-items: center; gap: 1.4cqw; text-align: center; }
+.outside b { font-family: var(--f-script); font-weight: 400; color: var(--wine); font-size: 7cqw; line-height: 1; }
+.outside small { font-family: var(--f-sans); font-size: max(8px, 1.35cqw); letter-spacing: .3em; text-transform: uppercase; color: var(--ink-soft); }
+.outside i { width: 18cqw; height: 1px; background: var(--line); }
+
+/* ================= FOLIOS ================= */
+.folio { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding-block: calc(96px + env(safe-area-inset-top, 0px)) 120px; display: grid; gap: 52px; }
+.page {
+  position: relative; scroll-margin-top: 90px;
+  background: var(--grain), var(--paper); box-shadow: var(--page-shadow);
+  padding: clamp(28px, 6vw, 72px) clamp(20px, 6vw, 76px) clamp(28px, 5vw, 56px);
+}
+.page-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.page-head .who { font-family: var(--f-script); font-size: 1.6rem; color: var(--wine); line-height: 1; }
+.page-head .fol { font-family: var(--f-sans); font-size: .66rem; letter-spacing: .24em; text-transform: uppercase; color: var(--ink-soft); }
+.page-foot { margin-top: 56px; text-align: center; font-family: var(--f-sans); font-size: .7rem; letter-spacing: .3em; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.page h2 { font-family: var(--f-script); font-weight: 400; color: var(--wine); font-size: clamp(3.2rem, 9vw, 6rem); line-height: .95; margin: 34px 0 10px; text-wrap: balance; }
+.lede { font-size: clamp(1.2rem, 2vw, 1.42rem); max-width: 58ch; margin: 0; text-wrap: pretty; }
+.page h3 { display: flex; align-items: center; gap: 18px; margin: 60px 0 28px; font-family: var(--f-serif); font-weight: 500; font-style: italic; font-size: clamp(1.7rem, 3vw, 2.2rem); }
+.page h3 .ace { width: 32px; transform: rotate(-8deg); box-shadow: 0 2px 6px rgba(0, 0, 0, .15); border-radius: 3px; }
+.page h3::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+/* navegación entre folios */
+.topnav {
+  position: fixed; z-index: 30; left: 50%; top: calc(14px + env(safe-area-inset-top, 0px)); transform: translateX(-50%);
+  display: flex; align-items: center; gap: 4px; max-width: calc(100vw - 32px); overflow-x: auto; scrollbar-width: none;
+  padding: 6px; border-radius: 999px; border: 1px solid rgba(43, 28, 30, .1);
+  background: rgba(251, 249, 244, .82); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  box-shadow: 0 8px 24px -12px rgba(60, 35, 30, .35);
+}
+.topnav a, .topnav button {
+  flex: none; font-family: var(--f-sans); font-size: .66rem; letter-spacing: .18em; text-transform: uppercase; text-decoration: none; white-space: nowrap;
+  padding: 8px 12px; border-radius: 999px; border: 0; background: none; cursor: pointer; color: var(--ink-soft);
+}
+.topnav a:hover, .topnav button:hover { color: var(--wine); background: rgba(140, 29, 43, .06); }
+.topnav .sig { font-family: var(--f-script); font-size: 1.25rem; letter-spacing: 0; text-transform: none; color: var(--wine); padding: 2px 12px 2px 10px; }
+.sealed .topnav { opacity: 0; pointer-events: none; }
+@media (max-width: 640px) { .topnav .sig { display: none; } }
+
+/* revelado al hacer scroll */
+
+/* about */
+.about { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 6fr); gap: clamp(28px, 4.5vw, 56px); align-items: start; margin-top: 10px; }
+.oval { position: relative; aspect-ratio: 574 / 799; max-width: 460px; }
+.oval > img { position: absolute; inset: 0; width: 100%; height: 100%; mix-blend-mode: multiply; }
+/* el retrato ocupa el hueco ovalado del encaje, justo por dentro del ribete cosido */
+.oval .photo { position: absolute; z-index: 1; left: 20.3%; top: 13.9%; width: 59.6%; height: 72%; border-radius: 50%; overflow: hidden; background: #6e1420; }
+.oval .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 44% 50%; transform: scale(1.07); }
+.oval .photo::after { content: ""; position: absolute; inset: 0; border-radius: 50%; box-shadow: inset 0 0 0 1.5px rgba(70, 8, 16, .55), inset 0 3px 10px rgba(40, 0, 6, .55), inset 0 -2px 8px rgba(255, 200, 200, .12); pointer-events: none; }
+.oval-wrap { position: relative; }
+.oval-wrap .bts { position: absolute; right: -6%; bottom: -6%; width: 40%; aspect-ratio: 664 / 800; background: url(assets/web/frame-lace.webp) center / 100% 100%; transform: rotate(5deg); display: grid; place-items: center; }
+.oval-wrap .bts img { width: 78%; height: 80%; object-fit: cover; }
+.about-text p { margin: 0 0 1em; max-width: 60ch; }
+.pull { margin: 0 0 1.4em; padding-left: 22px; border-left: 2px solid var(--rose); font-style: italic; font-size: 1.5rem; line-height: 1.3; }
+.skills { display: flex; flex-wrap: wrap; gap: 8px; margin: 1.6em 0 0; padding: 0; list-style: none; }
+.skills li { font-family: var(--f-sans); font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; border: 1px solid var(--line); padding: 7px 12px; border-radius: 999px; color: var(--ink-soft); }
+@media (max-width: 760px) { .about { grid-template-columns: minmax(0, 1fr); } .oval { max-width: 340px; } }
+
+/* trabajos */
+.works { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 40px 28px; }
+.work { display: grid; gap: 14px; align-content: start; min-width: 0; }
+.media { position: relative; display: block; aspect-ratio: 16 / 9; background: #1b1213; text-decoration: none; }
+.media > img, .media > video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.media .inset { position: absolute; right: -10px; bottom: -14px; width: 34%; padding: 5px 5px 14px; background: #fff; transform: rotate(4deg); box-shadow: 0 6px 14px rgba(0, 0, 0, .25); }
+.media .inset img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.media .play { position: absolute; left: 12px; bottom: 12px; font-family: var(--f-sans); font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; color: #fff; background: rgba(20, 10, 12, .55); padding: 6px 10px; border-radius: 999px; opacity: 0; transition: opacity .3s ease; }
+a.media:hover .play, a.media:focus-visible .play { opacity: 1; }
+.work h4 { margin: 0; font-family: var(--f-serif); font-weight: 600; font-size: 1.3rem; letter-spacing: .04em; text-transform: uppercase; line-height: 1.2; }
+.work .kind { font-family: var(--f-sans); font-size: .66rem; letter-spacing: .22em; text-transform: uppercase; color: var(--rose); margin: 0 0 2px; }
+.work .credit { margin: 4px 0 0; color: var(--ink-soft); font-style: italic; }
+.work .more { justify-self: start; font-family: var(--f-sans); font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--wine); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+.reels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.reels .media { aspect-ratio: 9 / 15; }
+@media (max-width: 760px) { .reels { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 460px) { .reels { grid-template-columns: minmax(0, 1fr); } }
+.feature { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 32px; align-items: end; margin-top: 56px; }
+.feature.flip { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); }
+.feature.flip .media { aspect-ratio: 489 / 615; background: #fff; }
+.feature.flip .media img { object-fit: contain; }
+@media (max-width: 760px) { .feature, .feature.flip { grid-template-columns: minmax(0, 1fr); } }
+
+/* alta calidad por pieza */
+.hd-wrap { position: relative; }
+.hd-btn {
+  position: absolute; top: 10px; right: 10px; z-index: 3; display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--f-sans); font-size: .62rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase;
+  background: rgba(251, 249, 244, .92); color: var(--ink); border: 1px solid rgba(43, 28, 30, .14); border-radius: 999px;
+  padding: 6px 10px; cursor: pointer; opacity: 0; transform: translateY(-4px); transition: opacity .25s ease, transform .25s ease;
+}
+.hd-wrap:hover .hd-btn, .hd-btn:focus-visible, .hd-btn.on, .hd-btn.loading { opacity: 1; transform: none; }
+@media (hover: none) { .hd-btn { opacity: 1; transform: none; } }
+.hd-btn.on { background: var(--wine); color: #fff8f4; border-color: var(--wine); cursor: default; }
+.hd-btn.loading::before { content: ""; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid currentColor; border-right-color: transparent; animation: spin .7s linear infinite; }
+@keyframes spin { to { transform: rotate(1turn); } }
+
+/* foto fija */
+.series { margin-top: 60px; }
+.series-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 24px; margin-bottom: 20px; border-bottom: 1px solid var(--line); padding-bottom: 12px; }
+.series-head h4 { margin: 0; font-family: var(--f-serif); font-weight: 500; font-style: italic; font-size: clamp(1.6rem, 3vw, 2.2rem); }
+.series-head p { margin: 0; font-family: var(--f-sans); font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-soft); }
+.series-head a { color: var(--wine); }
+.strip { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+.strip img { aspect-ratio: 9 / 16; object-fit: cover; width: 100%; }
+@media (max-width: 760px) { .strip { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; } .strip > * { flex: 0 0 46%; scroll-snap-align: start; } }
+.masonry { columns: 3 200px; column-gap: 12px; }
+.masonry > * { margin-bottom: 12px; break-inside: avoid; }
+.zoom { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; }
+.zoom img { width: 100%; height: auto; }
+.zoom:hover img { filter: brightness(1.06) contrast(1.03); }
+
+/* contacto */
+.contact { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 6fr); gap: clamp(32px, 6vw, 72px); align-items: center; margin-top: 20px; position: relative; }
+/* su foto en el marco de encaje rojo, con el sello del QR pegado en la esquina */
+.framed { margin: 0 auto; width: min(320px, 92%); aspect-ratio: 664 / 800; background: url(assets/web/frame-lace.webp) center / 100% 100%; display: grid; place-items: center; transform: rotate(-2deg); filter: drop-shadow(0 8px 12px rgba(60, 20, 25, .2)); }
+.framed img { width: 77%; height: 79%; object-fit: cover; object-position: 32% 50%; }
+.big-stamp { position: absolute; right: 0; bottom: 70px; width: min(128px, 38%); transform: rotate(6deg); text-decoration: none; --r: 4px; }
+.big-stamp .stamp-in { padding: 10%; }
+.big-stamp .qr-box { padding: 7%; }
+.big-stamp-cap { text-align: center; font-family: var(--f-sans); font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-soft); margin: 26px 0 0; }
+.contact .who { font-family: var(--f-sans); font-size: .76rem; letter-spacing: .28em; text-transform: uppercase; margin: 0; }
+.contact .name { font-family: var(--f-script); font-size: clamp(2.6rem, 6vw, 3.8rem); color: var(--wine); margin: 4px 0 22px; line-height: 1.1; }
+.rows { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.rows li { display: grid; grid-template-columns: 100px minmax(0, 1fr) auto; align-items: center; gap: 16px; padding: 15px 0; border-bottom: 1px solid var(--line); }
+.rows .k { font-family: var(--f-sans); font-size: .66rem; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-soft); }
+.rows .v { font-size: 1.3rem; overflow-wrap: break-word; user-select: all; min-width: 0; }
+.rows .v a { text-decoration: none; }
+.rows .v a:hover { color: var(--wine); }
+.copy { font-family: var(--f-sans); font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; background: none; border: 1px solid var(--line); border-radius: 999px; padding: 7px 12px; cursor: pointer; color: var(--ink-soft); white-space: nowrap; }
+.copy:hover { border-color: var(--wine); color: var(--wine); }
+.qr-col { position: relative; }
+.info-col { min-width: 0; }
+/* el auricular descansa junto al sello, lejos del nombre */
+.contact .phone { position: absolute; left: 0; bottom: 40px; width: 54px; transform: rotate(-24deg); pointer-events: none; filter: drop-shadow(0 4px 4px rgba(40, 20, 20, .25)); }
+.place { margin-top: 20px; font-style: italic; color: var(--ink-soft); }
+@media (max-width: 760px) {
+  .contact { grid-template-columns: minmax(0, 1fr); }
+  .rows li { grid-template-columns: minmax(0, 1fr) auto; }
+  .rows .k { grid-column: 1 / -1; }
+  .contact .phone { left: 4px; width: 46px; }
+}
+.closing { margin-top: 56px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 24px; }
+.closing .sign-off { margin: 0; font-style: italic; color: var(--ink-soft); }
+.closing .sign-off b { display: block; font-family: var(--f-script); font-weight: 400; font-style: normal; font-size: 3rem; color: var(--wine); line-height: 1; }
+.reseal {
+  display: inline-flex; align-items: center; gap: 12px; cursor: pointer;
+  font-family: var(--f-sans); font-size: .7rem; letter-spacing: .22em; text-transform: uppercase;
+  background: var(--wine); color: #fff8f4; border: 0; border-radius: 999px; padding: 10px 18px 10px 10px;
+}
+.reseal img { width: 30px; height: auto; filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .3)); }
+.reseal:hover { background: #6f1520; }
+
+/* visor de fotos */
+.lightbox { position: fixed; inset: 0; z-index: 60; background: rgba(20, 12, 14, .94); display: grid; grid-template-rows: 1fr auto; place-items: center; gap: 14px; padding: calc(24px + env(safe-area-inset-top, 0px)) 16px calc(20px + env(safe-area-inset-bottom, 0px)); cursor: zoom-out; }
+.lightbox img { max-height: 82vh; max-width: 100%; width: auto; box-shadow: 0 20px 60px rgba(0, 0, 0, .5); }
+.lb-bar { display: flex; gap: 12px; align-items: center; }
+.lb-bar .hd-btn { position: static; opacity: 1; transform: none; }
+.lb-bar span { font-family: var(--f-sans); font-size: .66rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(255, 255, 255, .6); }
+.toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 70; background: var(--ink); color: var(--paper); font-family: var(--f-sans); font-size: .75rem; letter-spacing: .12em; padding: 10px 16px; border-radius: 999px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: .01ms !important; transition-delay: 0s !important; animation: none !important; }
+  html { scroll-behavior: auto; }
+}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <clipPath id="cp-flap" clipPathUnits="objectBoundingBox"><path d="M0,0 H1 V0.015 L0.565,0.915 Q0.5,1.02 0.435,0.915 L0,0.015 Z"/></clipPath>
+    <clipPath id="cp-liner" clipPathUnits="objectBoundingBox"><path d="M0.035,0 H0.965 L0.555,0.84 Q0.5,0.93 0.445,0.84 Z"/></clipPath>
+    <clipPath id="cp-left" clipPathUnits="objectBoundingBox"><path d="M0,0 L0.465,0.5 Q0.5,0.54 0.465,0.58 L0,1 Z"/></clipPath>
+    <clipPath id="cp-right" clipPathUnits="objectBoundingBox"><path d="M1,0 L0.535,0.5 Q0.5,0.54 0.535,0.58 L1,1 Z"/></clipPath>
+    <clipPath id="cp-bottom" clipPathUnits="objectBoundingBox"><path d="M0,1 L0.43,0.57 Q0.5,0.5 0.57,0.57 L1,1 Z"/></clipPath>
+  </defs>
+</svg>
+
+<!-- ============ EL SOBRE ============ -->
+<div class="intro" id="intro">
+  <p class="intro-corner l">Portfolio creativo</p>
+  <p class="intro-corner r">Based in Madrid · Available worldwide</p>
+  <div class="env-wrap" id="env-wrap">
+    <div class="env" id="env">
+      <div class="e-back"><i class="liner gingham"></i></div>
+      <!-- aquí se guarda el primer folio, doblado en tres -->
+      <div class="pocket">
+        <div class="pk pk-l"><i></i></div>
+        <div class="pk pk-r"><i></i></div>
+        <div class="pk pk-b"><i></i></div>
+      </div>
+      <p class="addr">Remite: Tiny<small>Madrid · España</small></p>
+      <a class="sticker stamp" href="https://www.instagram.com/navarrotinyy/" target="_blank" rel="noopener" aria-label="Instagram de Lynnette Navarro (código QR)">
+        <span class="stamp-in gingham"><span class="qr-box" data-qr></span></span>
+      </a>
+      <div class="flap" id="flap">
+        <div class="fface ffront"><i></i><b class="shade"></b><div class="flap-name">Lynnette Navarro<small>Filmmaker · Fotógrafa · 1AC · 2AC</small></div></div>
+        <div class="fface fback"><i></i><i class="liner gingham"></i><b class="shade"></b></div>
+      </div>
+      <button class="seal" id="seal" aria-label="Romper el lacre y abrir la carta"><img src="assets/web/seal.webp" alt="" width="420" height="372"></button>
+    </div>
+    <div class="intro-foot">
+      <p class="hint">Pulsa el lacre para abrir la carta</p>
+      <button class="skip" id="skip">Saltar animación</button>
+    </div>
+  </div>
+</div>
+<div class="lift" id="lift" aria-hidden="true"></div>
+
+<nav class="topnav" aria-label="Folios">
+  <a class="sig" href="#inicio">Lynnette Navarro</a>
+  <a href="#about">About me</a>
+  <a href="#contenido">Content creator</a>
+  <a href="#onset">On set</a>
+  <a href="#fotofija">Foto-fija</a>
+  <a href="#contacto">Contacto</a>
+</nav>
+
+<!-- ============ LA CARTA ============ -->
+<main class="folio" id="folio">
+
+  <div class="p1-home" id="inicio">
+    <article id="p1" aria-label="Carta de presentación">
+      <div class="panel pb">
+        <div class="face front">
+          <b class="cast cast-top"></b><b class="cast cast-bottom"></b>
+          <div class="greet">
+            <p class="salute">¡Hola, bienvenido a mi portfolio!</p>
+            <p>Soy <strong>Lynnette Navarro, Tiny</strong>. Graduada en dirección de fotografía, con varios años dedicándome a la creación de contenido y siendo fotógrafa especializada en imagen artística y narrativa visual.</p>
+            <p class="ps">En los folios que siguen está mi trabajo detrás de cámara, en rodaje y en foto fija.</p>
+          </div>
+        </div>
+      </div>
+      <div class="panel pc">
+        <div class="face front">
+          <b class="shade"></b>
+          <div class="toc-wrap">
+            <p class="toc-label">En esta carta</p>
+            <ol class="toc">
+              <li><a href="#about"><span>About me</span><i></i><em>folio 2</em></a></li>
+              <li><a href="#contenido"><span>Content creator</span><i></i><em>folio 3</em></a></li>
+              <li><a href="#onset"><span>On set · Dep. cámara</span><i></i><em>folio 4</em></a></li>
+              <li><a href="#fotofija"><span>Foto-fija</span><i></i><em>folio 5</em></a></li>
+              <li><a href="#contacto"><span>Contacto</span><i></i><em>folio 6</em></a></li>
+            </ol>
+            <p class="sign">Con cariño,<b>Tiny</b></p>
+          </div>
+        </div>
+        <div class="face back"><b class="shade"></b></div>
+      </div>
+      <div class="panel pa">
+        <div class="face front">
+          <b class="shade"></b>
+          <div class="lh">
+            <div class="lh-top">
+              <div><p class="lh-name">Lynnette Navarro</p><p class="lh-sub">Your creative partner. Let’s work together!</p></div>
+              <div class="lh-meta">
+                <span>Madrid<br>31 · X · 2026</span>
+                <a class="stamp" href="https://www.instagram.com/navarrotinyy/" target="_blank" rel="noopener" aria-label="Instagram @navarrotinyy (código QR)"><span class="stamp-in gingham"><span class="qr-box" data-qr></span></span></a>
+              </div>
+            </div>
+            <div class="lh-rule"></div>
+            <p class="lh-roles"><span>Filmmaker · Fotógrafa · 1AC · 2AC</span><em>Based in Madrid · Available worldwide</em></p>
+          </div>
+        </div>
+        <div class="face back">
+          <b class="shade"></b>
+          <div class="outside"><b>Portfolio creativo</b><i></i><small>Lynnette Navarro · Tiny</small></div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <section class="page" id="about" aria-labelledby="t-about">
+    <header class="page-head"><span class="who">Lynnette Navarro</span><span class="fol">Folio 2 · Sobre mí</span></header>
+    <h2 id="t-about">About me</h2>
+    <div class="about">
+      <div class="oval-wrap">
+        <div class="oval">
+          <img src="assets/web/frame-oval.webp" alt="" decoding="async">
+          <div class="photo"><img src="assets/web/portrait.webp" alt="Retrato de Lynnette Navarro sobre fondo rojo" decoding="async"></div>
+        </div>
+        <div class="bts"><img src="assets/web/bts-camera.webp" alt="Lynnette preparando una cámara de cine" decoding="async"></div>
+      </div>
+      <div class="about-text">
+        <p class="pull">Mi enfoque se basa en contar historias visuales que conecten con las emociones, como una carta de amor al cine.</p>
+        <p>Durante mi formación académica me he especializado en dirección de fotografía y he trabajado en diversos cortometrajes estudiantiles, tanto de ficción como de no ficción.</p>
+        <p>Aunque mi experiencia profesional aún está en construcción, he tenido la oportunidad de desarrollar un enfoque visual propio, atenta a la luz, el encuadre y el ritmo narrativo.</p>
+        <ul class="skills" aria-label="Oficios">
+          <li>Filmmaker</li><li>Dirección de fotografía</li><li>Fotógrafa</li><li>Foto fija</li><li>1AC</li><li>2AC</li><li>Creación de contenido</li>
+        </ul>
+      </div>
+    </div>
+    <p class="page-foot">— 2 —</p>
+  </section>
+
+  <section class="page" id="contenido" aria-labelledby="t-contenido">
+    <header class="page-head"><span class="who">Lynnette Navarro</span><span class="fol">Folio 3 · Contenido</span></header>
+    <h2 id="t-contenido">Content creator</h2>
+    <p class="lede">Crear contenido no es solo publicar: es contar historias de personas y representar los valores de una marca. Me entusiasma la posibilidad de aportar mi creatividad y comunicar ideas conectando con las personas.</p>
+
+    <h3>Reels y campañas</h3>
+    <div class="reels">
+      <article class="work">
+        <a class="media" href="https://www.instagram.com/reel/DWUZhqSABNK/" target="_blank" rel="noopener"><img src="assets/web/c-emperatriz.webp" data-hd="assets/hd/c-emperatriz.png" alt="La Emperatriz: carta de tarot Ciento Uno" decoding="async"><span class="play">Ver reel ↗</span></a>
+        <div><p class="kind">Reel</p><h4>La Emperatriz</h4><p class="credit">Para @cientouno_</p></div>
+      </article>
+      <article class="work">
+        <a class="media" href="https://www.instagram.com/reel/Da0PwvFMQBI/" target="_blank" rel="noopener"><img src="assets/web/c-summerpink.webp" data-hd="assets/hd/c-summerpink.png" alt="Summer Pink Makeup" decoding="async"><span class="play">Ver reel ↗</span></a>
+        <div><p class="kind">Beauty</p><h4>Summer Pink Makeup</h4><p class="credit">Para Prada Beauty y @alexandrapereira · Dir. @magamaria__</p></div>
+      </article>
+      <article class="work">
+        <a class="media" href="https://www.instagram.com/p/DZvHNxhAMiE/" target="_blank" rel="noopener"><img src="assets/web/c-butaca.webp" data-hd="assets/hd/c-butaca.png" alt="La butaca de mi cuarto" decoding="async"><span class="play">Ver post ↗</span></a>
+        <div><p class="kind">Contenido</p><h4>La butaca de mi cuarto</h4><p class="credit">@Alexferránn · Dir. @Iggyetr</p></div>
+      </article>
+    </div>
+
+    <div class="feature">
+      <a class="media" href="https://www.instagram.com/reel/DYjv0NgMuvU/" target="_blank" rel="noopener">
+        <video src="assets/web/v-unfilmde.mp4" data-hd="assets/hd/v-unfilmde.mp4" poster="assets/web/v-unfilmde-poster.webp" muted loop playsinline preload="none"></video><span class="play">Ver reel ↗</span>
+      </a>
+      <div class="work"><p class="kind">Pieza audiovisual</p><h4>Un film de…</h4><p class="credit">Dir. Paula Cejudo x Ignacio Tovar</p><a class="more" href="https://www.instagram.com/reel/DYjv0NgMuvU/" target="_blank" rel="noopener">Ver en Instagram ↗</a></div>
+    </div>
+
+    <div class="feature flip">
+      <div class="media"><img src="assets/web/c-hyatt.webp" data-hd="assets/hd/c-hyatt.png" alt="World of Hyatt: barra con arreglos florales, logos de Audi y Fórmula 1" decoding="async"></div>
+      <div class="work"><p class="kind">Evento de marca</p><h4>“World of Hyatt”</h4><p class="credit">Para @paraisofloral · @audi x @Fórmula1</p></div>
+    </div>
+    <p class="page-foot">— 3 —</p>
+  </section>
+
+  <section class="page" id="onset" aria-labelledby="t-onset">
+    <header class="page-head"><span class="who">Lynnette Navarro</span><span class="fol">Folio 4 · On set</span></header>
+    <h2 id="t-onset">Dep. cámara</h2>
+    <p class="lede">Disfruto del trabajo en equipo, del proceso audiovisual y de la parte técnica y creativa. Me motiva estar detrás de cámara, aprender de cada proyecto y aportar para conseguir el resultado final.</p>
+
+    <h3><img class="ace" src="assets/web/card-ace.webp" alt="">Como DOP</h3>
+    <div class="works">
+      <article class="work">
+        <a class="media" href="https://x.com/suptejas/status/1991161542029500788" target="_blank" rel="noopener"><img src="assets/web/s-dimension.webp" data-hd="assets/hd/s-dimension.jpg" alt="Dimension, fotograma" decoding="async"><span class="play">Ver pieza ↗</span></a>
+        <div><p class="kind">Publicidad</p><h4>Dimension</h4><p class="credit">Dir. Ignacio Tovar</p></div>
+      </article>
+      <article class="work">
+        <a class="media" href="https://www.instagram.com/p/DZqArraoH0s/" target="_blank" rel="noopener"><video src="assets/web/v-hotgirl.mp4" data-hd="assets/hd/v-hotgirl.mp4" poster="assets/web/v-hotgirl-poster.webp" muted loop playsinline preload="none"></video><span class="play">Ver pieza ↗</span></a>
+        <div><p class="kind">Fashion</p><h4>Hot Girl Summer</h4><p class="credit">Dir. Ana Cumbreras x Lynnette Navarro</p></div>
+      </article>
+      <article class="work">
+        <a class="media" href="https://www.youtube.com/watch?v=xqkRe3iMtXk" target="_blank" rel="noopener"><img src="assets/web/s-ojos-doc.webp" data-hd="assets/hd/s-ojos-doc.png" alt="Cartel de Ojos sobre mí" decoding="async" style="object-position:50% 35%"><span class="play">Ver en YouTube ↗</span></a>
+        <div><p class="kind">Documental</p><h4>Ojos sobre mí</h4><p class="credit">Dir. Eduardo Sánchez x Isaías Saldaña</p></div>
+      </article>
+      <article class="work">
+        <div class="media"><img src="assets/web/s-tarab-2.webp" data-hd="assets/hd/s-tarab-2.png" alt="Rodaje de Tarab: bailarina iluminada en plató" decoding="async" style="object-position:50% 40%"><span class="inset"><img src="assets/web/s-tarab-1.webp" data-hd="assets/hd/s-tarab-1.jpg" alt="" decoding="async"></span></div>
+        <div><p class="kind">Fashion film</p><h4>Tarab</h4><p class="credit">Dir. María Chacín x Lynnette Navarro</p></div>
+      </article>
+      <article class="work">
+        <a class="media" href="https://www.instagram.com/p/DOvnKm1jC4z/" target="_blank" rel="noopener"><video src="assets/web/v-iris.mp4" data-hd="assets/hd/v-iris.mp4" poster="assets/web/v-iris-poster.webp" muted loop playsinline preload="none" aria-label="Fragmento de Íris"></video><span class="play">Ver pieza ↗</span></a>
+        <div><p class="kind">Cortometraje</p><h4>Íris</h4><p class="credit">Dir. Saeby Morales</p></div>
+      </article>
+      <article class="work">
+        <a class="media" href="https://www.instagram.com/p/DPl92eojOXX/" target="_blank" rel="noopener"><video src="assets/web/v-fun.mp4" data-hd="assets/hd/v-fun.mp4" poster="assets/web/v-fun-poster.webp" muted loop playsinline preload="none" aria-label="Fragmento de Fun"></video><span class="inset"><img src="assets/web/s-fun-bts.webp" data-hd="assets/hd/s-fun-bts.png" alt="" decoding="async"></span><span class="play">Ver pieza ↗</span></a>
+        <div><p class="kind">Fashion film</p><h4>Fun</h4><p class="credit">Dir. Ignacio Tovar</p></div>
+      </article>
+    </div>
+
+    <h3><img class="ace" src="assets/web/card-ace.webp" alt="">Como 1AC</h3>
+    <div class="works">
+      <article class="work">
+        <a class="media" href="https://www.youtube.com/watch?v=NkjqdTpH-lw" target="_blank" rel="noopener"><img src="assets/web/s-facing.webp" data-hd="assets/hd/s-facing.png" alt="Facing the Unknown: silueta frente a una luz roja" decoding="async"><span class="play">Ver en YouTube ↗</span></a>
+        <div><p class="kind">Videoclip</p><h4>Facing the Unknown</h4><p class="credit">Para @nauleone</p></div>
+      </article>
+      <article class="work">
+        <div class="media"><img src="assets/web/s-besos-1.webp" data-hd="assets/hd/s-besos-1.png" alt="Fotogramas de Cómo saben los besos" decoding="async"><span class="inset"><img src="assets/web/s-besos-2.webp" data-hd="assets/hd/s-besos-2.png" alt="" decoding="async"></span></div>
+        <div><p class="kind">Mediometraje</p><h4>Cómo saben los besos</h4><p class="credit">Dir. Javier Sánchez · DOP Gonzalo Moretti</p></div>
+      </article>
+      <article class="work">
+        <a class="media" href="https://www.youtube.com/watch?v=Zi0nBR90GNs" target="_blank" rel="noopener"><img src="assets/web/s-perspectivas-1.webp" data-hd="assets/hd/s-perspectivas-1.jpg" alt="Perspectivas, fotograma" decoding="async"><span class="inset"><img src="assets/web/s-perspectivas-2.webp" data-hd="assets/hd/s-perspectivas-2.jpg" alt="" decoding="async"></span><span class="play">Ver en YouTube ↗</span></a>
+        <div><p class="kind">Cortometraje</p><h4>Perspectivas</h4><p class="credit">Dir. Roberto López</p></div>
+      </article>
+      <article class="work">
+        <a class="media" href="https://www.instagram.com/p/DLQjfJAMhbnwQf_Dhc7BbY_fcu-dtl5Jv4W6Qo0/" target="_blank" rel="noopener"><img src="assets/web/s-ojos-corto.webp" data-hd="assets/hd/s-ojos-corto.jpg" alt="Ojos sobre mí, cortometraje" decoding="async"><span class="play">Ver pieza ↗</span></a>
+        <div><p class="kind">Cortometraje</p><h4>Ojos sobre mí</h4><p class="credit">Dir. Sofía Corral · DOP Sandra Ruiz</p></div>
+      </article>
+    </div>
+
+    <h3><img class="ace" src="assets/web/card-ace.webp" alt="">Como 2AC</h3>
+    <div class="works">
+      <article class="work">
+        <a class="media" href="https://youtu.be/AJGlQbIBLj0" target="_blank" rel="noopener"><img src="assets/web/s-ojos-videoclip.webp" data-hd="assets/hd/s-ojos-videoclip.jpg" alt="Ojos sobre mí, videoclip" decoding="async"><span class="play">Ver en YouTube ↗</span></a>
+        <div><p class="kind">Videoclip</p><h4>Ojos sobre mí</h4><p class="credit">Dir. Eduardo Sánchez x Isaías Saldaña</p></div>
+      </article>
+      <article class="work">
+        <div class="media"><img src="assets/web/s-camaleon.webp" data-hd="assets/hd/s-camaleon.png" alt="Equipo de rodaje de Camaleón" decoding="async"></div>
+        <div><p class="kind">Teaser</p><h4>Camaleón</h4><p class="credit">Dir. Alberto Magdaleno</p></div>
+      </article>
+    </div>
+    <p class="page-foot">— 4 —</p>
+  </section>
+
+  <section class="page" id="fotofija" aria-labelledby="t-fotofija">
+    <header class="page-head"><span class="who">Lynnette Navarro</span><span class="fol">Folio 5 · Foto-fija</span></header>
+    <h2 id="t-fotofija">Fotofija</h2>
+    <p class="lede">Combinar precisión, técnica y creatividad. Disfruto trabajar el instante para hacerlo efímero, componiendo y pensando en cada detalle.</p>
+
+    <section class="series">
+      <div class="series-head"><h4>“Todo lo que nunca fuimos”</h4><p>Light assistant</p></div>
+      <div class="strip">
+        <button class="zoom"><img src="assets/web/f-todo-1.webp" data-hd="assets/hd/f-todo-1.jpg" alt="Todo lo que nunca fuimos, foto 1" decoding="async"></button>
+        <button class="zoom"><img src="assets/web/f-todo-2.webp" data-hd="assets/hd/f-todo-2.jpg" alt="Todo lo que nunca fuimos, foto 2" decoding="async"></button>
+        <button class="zoom"><img src="assets/web/f-todo-3.webp" data-hd="assets/hd/f-todo-3.jpg" alt="Todo lo que nunca fuimos, foto 3" decoding="async"></button>
+        <button class="zoom"><img src="assets/web/f-todo-4.webp" data-hd="assets/hd/f-todo-4.jpg" alt="Todo lo que nunca fuimos, foto 4" decoding="async"></button>
+        <button class="zoom"><img src="assets/web/f-todo-5.webp" data-hd="assets/hd/f-todo-5.jpg" alt="Todo lo que nunca fuimos, foto 5" decoding="async"></button>
+      </div>
+    </section>
+
+    <section class="series">
+      <div class="series-head"><h4>“Habitada”</h4><p>Foto-fija para <a href="https://www.instagram.com/p/DaI-cWgDBsd/" target="_blank" rel="noopener">@Coraje Estudio ↗</a></p></div>
+      <button class="zoom"><img src="assets/web/f-habitada.webp" data-hd="assets/hd/f-habitada.png" alt="Habitada: buhardilla con luz cálida y el título en caligrafía" decoding="async"></button>
+    </section>
+
+    <section class="series">
+      <div class="series-head"><h4>“Colección Tierra”</h4><p>Alegría B</p></div>
+      <div class="masonry">
+        <button class="zoom"><img src="assets/web/f-tierra-1.webp" data-hd="assets/hd/f-tierra-1.jpg" alt="Colección Tierra, foto 1" decoding="async"></button>
+        <button class="zoom"><img src="assets/web/f-tierra-4.webp" data-hd="assets/hd/f-tierra-4.jpg" alt="Colección Tierra, foto 2" decoding="async"></button>
+        <button class="zoom"><img src="assets/web/f-tierra-2.webp" data-hd="assets/hd/f-tierra-2.jpg" alt="Colección Tierra, foto 3" decoding="async"></button>
+        <button class="zoom"><img src="assets/web/f-tierra-3.webp" data-hd="assets/hd/f-tierra-3.jpg" alt="Colección Tierra, foto 4" decoding="async"></button>
+        <button class="zoom"><img src="assets/web/f-tierra-5.webp" data-hd="assets/hd/f-tierra-5.jpg" alt="Colección Tierra, foto 5" decoding="async"></button>
+        <button class="zoom"><img src="assets/web/f-tierra-6.webp" data-hd="assets/hd/f-tierra-6.jpg" alt="Colección Tierra, foto 6" decoding="async"></button>
+      </div>
+    </section>
+
+    <section class="series">
+      <div class="series-head"><h4>“Ecos de una bella época”</h4><p>Editorial</p></div>
+      <div class="masonry">
+        <button class="zoom"><img src="assets/web/f-ecos-1.webp" data-hd="assets/hd/f-ecos-1.jpg" alt="Ecos de una bella época, foto 1" decoding="async"></button>
+        <button class="zoom"><img src="assets/web/f-ecos-3.webp" data-hd="assets/hd/f-ecos-3.jpg" alt="Ecos de una bella época, foto 2" decoding="async"></button>
+        <button class="zoom"><img src="assets/web/f-ecos-2.webp" data-hd="assets/hd/f-ecos-2.jpg" alt="Ecos de una bella época, foto 3" decoding="async"></button>
+        <button class="zoom"><img src="assets/web/f-ecos-4.webp" data-hd="assets/hd/f-ecos-4.jpg" alt="Ecos de una bella época, foto 4" decoding="async"></button>
+      </div>
+    </section>
+    <p class="page-foot">— 5 —</p>
+  </section>
+
+  <section class="page" id="contacto" aria-labelledby="t-contacto">
+    <header class="page-head"><span class="who">Lynnette Navarro</span><span class="fol">Folio 6 · Contacto</span></header>
+    <h2 id="t-contacto">Let’s work together</h2>
+    <div class="contact">
+      <div class="qr-col">
+        <figure class="framed"><img src="assets/web/bts-camera.webp" alt="Lynnette Navarro preparando una cámara de cine en rodaje" decoding="async"></figure>
+        <a class="big-stamp stamp" href="https://www.instagram.com/navarrotinyy/" target="_blank" rel="noopener" aria-label="Abrir Instagram @navarrotinyy">
+          <span class="stamp-in gingham"><span class="qr-box" data-qr></span></span>
+        </a>
+        <img class="phone" src="assets/web/phone.webp" alt="">
+        <p class="big-stamp-cap">Escanea el sello para ir a Instagram</p>
+      </div>
+      <div class="info-col">
+        <p class="who">Filmmaker · Fotógrafa · 1AC · 2AC</p>
+        <p class="name">Lynnette Navarro</p>
+        <ul class="rows">
+          <li><span class="k">Teléfono</span><span class="v"><a href="tel:+34634077703">634 077 703</a></span><button class="copy" data-copy="634 077 703">Copiar</button></li>
+          <li><span class="k">Email</span><span class="v"><a href="mailto:Navarrodop2020@gmail.com">Navarrodop2020@<wbr>gmail.com</a></span><button class="copy" data-copy="Navarrodop2020@gmail.com">Copiar</button></li>
+          <li><span class="k">Instagram</span><span class="v"><a href="https://www.instagram.com/navarrotinyy/" target="_blank" rel="noopener">@navarrotinyy</a></span><button class="copy" data-copy="https://www.instagram.com/navarrotinyy/">Copiar</button></li>
+        </ul>
+        <p class="place">Based in Madrid · Available worldwide.</p>
+      </div>
+    </div>
+    <div class="closing">
+      <p class="sign-off">Gracias por leer hasta aquí,<b>Tiny</b></p>
+      <button class="reseal" id="reseal"><img src="assets/web/seal.webp" alt="" width="420" height="372">Guardar la carta en el sobre</button>
+    </div>
+    <p class="page-foot">— 6 —</p>
+  </section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script>
+(() => {
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+  const root = document.documentElement;
+  const IG = "https://www.instagram.com/navarrotinyy/";
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const EASE_OUT = "cubic-bezier(.22,1,.36,1)";
+  const ST = "translate(-50%, -50%)";
+  let fast = reduce;                         // sin animación: movimiento reducido, enlace directo o "Saltar"
+  const wait = ms => new Promise(r => setTimeout(r, fast ? 0 : ms));
+  // anima y deja fijado el estado final en el estilo del elemento.
+  // El temporizador de respaldo cierra el paso aunque la pestaña quede en segundo plano.
+  function go(el, frames, o) {
+    const duration = fast ? 0 : o.duration, delay = fast ? 0 : (o.delay || 0);
+    const a = el.animate(frames, { ...o, duration, delay, fill: "both" });
+    let closed = false;
+    const done = () => {
+      if (closed) return; closed = true;
+      try { a.finish(); } catch (_) {}
+      try { a.commitStyles(); } catch (_) {}
+      a.cancel();
+    };
+    return Promise.race([a.finished, new Promise(r => setTimeout(r, duration + delay + 120))]).then(done, done);
+  }
+
+  /* QR hacia Instagram, en burdeos */
+  function drawQR(box) {
+    if (typeof qrcode !== "function") { box.textContent = "@navarrotinyy"; box.style.font = "500 10px Jost, sans-serif"; return; }
+    const q = qrcode(0, "M"); q.addData(IG); q.make();
+    const n = q.getModuleCount(); let d = "";
+    for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) if (q.isDark(r, c)) d += `M${c} ${r}h1v1h-1z`;
+    box.innerHTML = `<svg viewBox="0 0 ${n} ${n}" shape-rendering="crispEdges" role="img" aria-label="Código QR a instagram.com/navarrotinyy"><path d="${d}" fill="#8c1d2b"/></svg>`;
+  }
+  $$("[data-qr]").forEach(drawQR);
+
+  const intro = $("#intro"), envWrap = $("#env-wrap"), env = $("#env"), pocket = env.querySelector(".pocket");
+  const flap = $("#flap"), seal = $("#seal"), lift = $("#lift"), topnav = $(".topnav");
+  const p1 = $("#p1"), p1Home = $(".p1-home"), pa = p1.querySelector(".pa"), pb = p1.querySelector(".pb"), pc = p1.querySelector(".pc");
+  let state = "open";
+
+  /* ---------- geometría: el folio doblado en tres cabe en el sobre ---------- */
+  // Dentro del sobre la carta tiene un tamaño que, desplegada, cabe entera en pantalla ("stage");
+  // al terminar de abrirse se acerca hasta el ancho de lectura del primer folio.
+  const ratio = () => parseFloat(getComputedStyle(root).getPropertyValue("--p1r")) || 1.25;
+  const fitW = () => Math.min(600, p1Home.getBoundingClientRect().width, (innerHeight - 112) / ratio());
+  function stageRect() {
+    const home = p1Home.getBoundingClientRect(), w = fitW();
+    return { left: home.left + (home.width - w) / 2, top: home.top, width: w };
+  }
+  function geo() {
+    const r = ratio();
+    const slotW = Math.min(fitW(), (innerWidth - 12) * .92);
+    const W = slotW / .92, panelH = slotW * r / 3, padTop = W * .035;
+    // "out": recorrido para que la carta salga entera por encima del borde del sobre
+    return { r, W, H: panelH + padTop * 2.4, slotW, panelH, padX: (W - slotW) / 2, padTop, out: -(panelH + padTop + W * .025) };
+  }
+  const setFolded = f => { pa.style.transform = f ? "rotateX(-180deg)" : "rotateX(0deg)"; pc.style.transform = f ? "rotateX(180deg)" : "rotateX(0deg)"; };
+  function seat() {
+    const g = geo();
+    env.style.width = g.W + "px"; env.style.height = g.H + "px";
+    env.insertBefore(p1, pocket);
+    Object.assign(p1.style, { position: "absolute", width: g.slotW + "px", left: g.padX + "px", top: (g.padTop - g.panelH) + "px", transform: "none", transformOrigin: "0 0", zIndex: 2 });
+    setFolded(true);
+  }
+  const flip = (a, b) => `translate(${a.left - b.left}px, ${a.top - b.top}px) scale(${a.width / b.width})`;
+  // cuánto hay que bajar el sobre para que la carta, al salir entera, no se salga de la pantalla
+  function roomShift() {
+    const prev = envWrap.style.transform;
+    envWrap.style.transform = "none";
+    const top = env.getBoundingClientRect().top;
+    envWrap.style.transform = prev;
+    return Math.max(0, -geo().out + 20 - top);
+  }
+
+  /* ---------- lacre ---------- */
+  async function crack() {
+    const img = seal.querySelector("img");
+    seal.style.pointerEvents = "none";
+    await go(seal, [{ transform: ST }, { transform: ST + " scale(.9)", offset: .45 }, { transform: ST + " scale(1.03)" }], { duration: 280, easing: "ease-out" });
+    const halves = ["l", "r"].map(s => { const h = document.createElement("span"); h.className = "seal-half " + s; h.append(img.cloneNode()); seal.append(h); return h; });
+    img.style.visibility = "hidden";
+    go(halves[0], [{ transform: "none", opacity: 1 }, { transform: "translate(-6%, 3%) rotate(-7deg)", opacity: 1, offset: .16 }, { transform: "translate(-45%, 160%) rotate(-42deg)", opacity: 0 }], { duration: 1000, easing: "cubic-bezier(.5,0,.75,.3)" }).then(() => halves[0].remove());
+    go(halves[1], [{ transform: "none", opacity: 1 }, { transform: "translate(6%, 2%) rotate(6deg)", opacity: 1, offset: .16 }, { transform: "translate(40%, 180%) rotate(34deg)", opacity: 0 }], { duration: 1080, easing: "cubic-bezier(.5,0,.75,.3)" }).then(() => halves[1].remove());
+    for (let i = 0; i < 10; i++) {
+      const c = document.createElement("i"); c.className = "crumb";
+      const s = 2 + Math.random() * 5; c.style.width = c.style.height = s + "px";
+      seal.append(c);
+      const dx = (Math.random() - .5) * 140, dy = 40 + Math.random() * 140;
+      go(c, [{ transform: ST, opacity: 1 }, { transform: `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) rotate(${Math.random() * 400}deg)`, opacity: 0 }],
+        { duration: 650 + Math.random() * 600, easing: "cubic-bezier(.3,.1,.7,1)" }).then(() => c.remove());
+    }
+  }
+  function stamp() {
+    seal.querySelectorAll(".seal-half, .crumb").forEach(e => e.remove());
+    seal.querySelector("img").style.visibility = "";
+    seal.style.pointerEvents = "";
+    return go(seal, [{ transform: ST + " scale(1.7)", opacity: 0 }, { transform: ST + " scale(.92)", opacity: 1, offset: .62 }, { transform: ST + " scale(1)", opacity: 1 }], { duration: 520, easing: "cubic-bezier(.3,0,.3,1)" });
+  }
+
+  /* ---------- solapa: gira en 3D y pasa detrás de la carta a mitad de giro ---------- */
+  function flapTo(open, duration) {
+    const direction = open ? "normal" : "reverse", easing = "cubic-bezier(.45,0,.2,1)";
+    go(flap.querySelector(".ffront .shade"), [{ opacity: 0 }, { opacity: .55, offset: .5 }, { opacity: .55 }], { duration, easing, direction });
+    go(flap.querySelector(".fback .shade"), [{ opacity: .5 }, { opacity: .5, offset: .5 }, { opacity: 0 }], { duration, easing, direction });
+    return go(flap, [{ transform: "rotateX(0deg)", zIndex: 5 }, { offset: .5, zIndex: 5 }, { offset: .5, zIndex: 1 }, { transform: "rotateX(180deg)", zIndex: 1 }], { duration, easing, direction });
+  }
+
+  /* ---------- pliegues de la carta ---------- */
+  function fold(panel, open, duration) {
+    const isA = panel === pa, closed = isA ? -180 : 180, over = isA ? 7 : -6;
+    const direction = open ? "normal" : "reverse", easing = open ? "cubic-bezier(.45,.05,.25,1)" : "cubic-bezier(.55,0,.35,1)";
+    go(panel.querySelector(".front .shade"), [{ opacity: .6 }, { opacity: .6, offset: .5 }, { opacity: 0 }], { duration, easing, direction });
+    go(panel.querySelector(".back .shade"), [{ opacity: 0 }, { opacity: .45, offset: .5 }, { opacity: .45 }], { duration, easing, direction });
+    go(pb.querySelector(isA ? ".cast-top" : ".cast-bottom"), [{ opacity: 0 }, { opacity: .5, offset: .42 }, { opacity: 0 }], { duration, easing, direction });
+    const frames = open
+      ? [{ transform: `rotateX(${closed}deg)` }, { transform: `rotateX(${over}deg)`, offset: .8 }, { transform: "rotateX(0deg)" }]
+      : [{ transform: "rotateX(0deg)" }, { transform: `rotateX(${closed}deg)` }];
+    return go(panel, frames, { duration, easing });
+  }
+
+  /* ---------- abrir: lacre → solapa → la carta sale → se despliega → primer folio ---------- */
+  async function openLetter() {
+    if (state !== "sealed") return;
+    state = "busy";
+    intro.classList.add("opening");
+    await crack();
+    await wait(60);
+    const shift = roomShift();
+    if (shift) go(envWrap, [{ transform: "translateY(0px) scale(1)" }, { transform: `translateY(${shift}px) scale(1)` }], { duration: 1100, easing: "cubic-bezier(.45,0,.25,1)" });
+    flapTo(true, 950);
+    await wait(600);
+    // se saca como una carta de verdad: los dedos la pellizcan, dos tirones con un leve giro
+    // y el sobre cede un poco con el roce, hasta que la carta sale entera
+    const g = geo(), y1 = g.out * .52;
+    const pos = (y, a) => `translate(0px, ${y}px) rotate(${a}deg) scale(1)`;
+    await go(p1, [{ transform: pos(0, 0) }, { transform: pos(-g.H * .05, -.4), offset: .55 }, { transform: pos(-g.H * .03, -.2) }], { duration: 380, easing: "ease-out" });
+    go(env, [{ transform: "translateY(0px) rotate(0deg)" }, { transform: "translateY(4px) rotate(.35deg)", offset: .5 }, { transform: "translateY(0px) rotate(0deg)" }], { duration: 760, easing: "ease-in-out" });
+    await go(p1, [{ transform: pos(-g.H * .03, -.2) }, { transform: pos(y1, -1.4) }], { duration: 760, easing: "cubic-bezier(.45,0,.4,1)" });
+    await wait(130);
+    go(env, [{ transform: "translateY(0px) rotate(0deg)" }, { transform: "translateY(3px) rotate(-.25deg)", offset: .45 }, { transform: "translateY(0px) rotate(0deg)" }], { duration: 820, easing: "ease-in-out" });
+    await go(p1, [{ transform: pos(y1, -1.4) }, { transform: pos(g.out, .5) }], { duration: 880, easing: "cubic-bezier(.3,0,.2,1)" });
+    await wait(160);
+
+    // ya fuera, la carta se desliza recta hasta donde se va a leer; el sobre se retira
+    const r0 = p1.getBoundingClientRect(), st = stageRect();
+    lift.append(p1);
+    Object.assign(p1.style, { position: "absolute", width: st.width + "px", left: st.left + "px", top: st.top + "px", zIndex: "", transformOrigin: "0 0", filter: "none" });
+    const r1 = p1.getBoundingClientRect();
+    go(envWrap, [{ transform: `translateY(${shift}px) scale(1)`, opacity: 1, filter: "blur(0px)" }, { transform: `translateY(${shift + innerHeight * .45}px) scale(.96)`, opacity: 0, filter: "blur(4px)" }], { duration: 1100, easing: "cubic-bezier(.5,0,.75,.35)" });
+    await go(p1, [{ transform: `${flip(r0, r1)} rotate(.5deg)` }, { transform: "translate(0px, 0px) scale(1) rotate(0deg)" }], { duration: 1150, easing: "cubic-bezier(.45,0,.2,1)" });
+    p1.style.transform = "none";
+    await go(intro, [{ opacity: 1 }, { opacity: 0 }], { duration: 350, easing: "ease" });
+    intro.hidden = true;
+
+    // y se abre ahí mismo, como en la mano: primero el pliegue de arriba, luego el de abajo
+    fold(pa, true, 950);
+    await wait(700);
+    await fold(pc, true, 950);
+    await wait(260);
+
+    // con la carta entera a la vista, entras en ella: se acerca hasta el tamaño de lectura
+    const rs = p1.getBoundingClientRect(), home = p1Home.getBoundingClientRect();
+    Object.assign(p1.style, { width: home.width + "px", left: home.left + "px", top: home.top + "px" });
+    await go(p1, [{ transform: flip(rs, p1.getBoundingClientRect()) }, { transform: "translate(0px, 0px) scale(1)" }], { duration: 1000, easing: "cubic-bezier(.6,0,.2,1)" });
+    settle();
+  }
+
+  // el folio desplegado pasa a ser la primera página (mismo sitio, mismo tamaño) y aparecen los demás
+  function settle() {
+    p1Home.append(p1); p1.removeAttribute("style");
+    root.classList.remove("sealed");
+    scrollTo(0, 0);
+    $$(".folio > .page").forEach((pg, i) => go(pg, [{ opacity: 0, transform: "translateY(30px)" }, { opacity: 1, transform: "translateY(0px)" }], { duration: 700, delay: 100 + i * 80, easing: EASE_OUT }));
+    go(topnav, [{ opacity: 0, transform: "translate(-50%, -14px)" }, { opacity: 1, transform: "translate(-50%, 0px)" }], { duration: 600, delay: 200, easing: EASE_OUT });
+    intro.classList.remove("opening");
+    state = "open"; fast = reduce;
+  }
+
+  /* ---------- guardar: se dobla, vuelve al sobre y se lacra de nuevo ---------- */
+  function toTop() {
+    return new Promise(res => {
+      if (scrollY < 4 || fast) { scrollTo(0, 0); return res(); }
+      scrollTo({ top: 0, behavior: "smooth" });
+      const t0 = performance.now();
+      (function check() { if (scrollY < 4 || performance.now() - t0 > 2000) { scrollTo(0, 0); res(); } else requestAnimationFrame(check); })();
+    });
+  }
+  async function closeLetter() {
+    if (state !== "open") return;
+    state = "busy";
+    $$("video").forEach(v => v.pause());
+    await toTop();
+    const pages = $$(".folio > .page");
+    go(topnav, [{ opacity: 1 }, { opacity: 0 }], { duration: 400 });
+    await Promise.all(pages.map((pg, i) => go(pg, [{ opacity: 1, transform: "translateY(0px)" }, { opacity: 0, transform: "translateY(50px)" }], { duration: 550, delay: i * 50, easing: "cubic-bezier(.5,0,.75,0)" })));
+
+    // la carta se queda en su sitio, sobre la mesa, y se dobla ahí mismo
+    const home = p1.getBoundingClientRect();
+    lift.append(p1);
+    Object.assign(p1.style, { position: "absolute", width: home.width + "px", left: home.left + "px", top: home.top + "px", transformOrigin: "0 0" });
+    root.classList.add("sealed");
+    intro.hidden = false; intro.classList.add("opening");
+    await go(intro, [{ opacity: 0 }, { opacity: 1 }], { duration: 350, easing: "ease" });
+    // se aleja hasta caber entera en pantalla y se dobla ahí
+    const st = stageRect();
+    Object.assign(p1.style, { width: st.width + "px", left: st.left + "px", top: st.top + "px" });
+    await go(p1, [{ transform: flip(home, p1.getBoundingClientRect()) }, { transform: "translate(0px, 0px) scale(1)" }], { duration: 900, easing: "cubic-bezier(.6,0,.2,1)" });
+    p1.style.transform = "none";
+    fold(pc, false, 850);
+    await wait(620);
+    await fold(pa, false, 850);
+    await wait(150);
+
+    // vuelve el sobre, abierto, esperando la carta
+    const g = geo();
+    env.style.width = g.W + "px"; env.style.height = g.H + "px";
+    const shift = roomShift();
+    await go(envWrap, [{ transform: `translateY(${shift + innerHeight * .42}px) scale(.94)`, opacity: 0, filter: "blur(5px)" }, { transform: `translateY(${shift}px) scale(1)`, opacity: 1, filter: "blur(0px)" }], { duration: 1000, easing: EASE_OUT });
+    const rA = p1.getBoundingClientRect();
+    env.insertBefore(p1, pocket);
+    Object.assign(p1.style, { position: "absolute", width: g.slotW + "px", left: g.padX + "px", top: (g.padTop - g.panelH) + "px", transform: "none", zIndex: 2 });
+    const rB = p1.getBoundingClientRect();
+    await go(p1, [{ transform: flip(rA, rB) }, { transform: `translate(0px, ${g.out}px) scale(1)` }], { duration: 950, easing: "cubic-bezier(.45,0,.25,1)" });
+    await go(p1, [{ transform: `translate(0px, ${g.out}px) scale(1)` }, { transform: "translate(0px, 0px) scale(1)" }], { duration: 1050, easing: "cubic-bezier(.5,0,.3,1)" });
+    if (shift) go(envWrap, [{ transform: `translateY(${shift}px) scale(1)` }, { transform: "translateY(0px) scale(1)" }], { duration: 1000, delay: 300, easing: "cubic-bezier(.45,0,.25,1)" });
+    await flapTo(false, 900);
+    await stamp();
+    intro.classList.remove("opening");
+    state = "sealed"; fast = reduce;
+  }
+
+  env.addEventListener("click", e => { if (!e.target.closest(".sticker")) openLetter(); });
+  $("#reseal").addEventListener("click", closeLetter);
+  $("#skip").addEventListener("click", () => {
+    fast = true;
+    document.getAnimations().forEach(a => { try { a.finish(); } catch (_) {} });
+  });
+  let rz;
+  addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => { if (state === "sealed") seat(); }, 150); });
+
+  // los vídeos solo se reproducen mientras se ven
+  if ("IntersectionObserver" in window) {
+    const vio = new IntersectionObserver(es => es.forEach(e => { const v = e.target; if (e.isIntersecting && state === "open") v.play().catch(() => {}); else v.pause(); }), { threshold: .3 });
+    $$(".folio video").forEach(v => vio.observe(v));
+  }
+
+  /* ---------- alta calidad bajo demanda ---------- */
+  function swapHD(el) {
+    return new Promise(res => {
+      const hd = el.dataset.hd;
+      if (!hd || el.dataset.isHd) return res();
+      el.dataset.isHd = "1";
+      if (el.tagName === "VIDEO") {
+        const t = el.currentTime, playing = !el.paused;
+        el.addEventListener("loadeddata", () => { try { el.currentTime = t; } catch (_) {} if (playing) el.play().catch(() => {}); res(); }, { once: true });
+        el.addEventListener("error", res, { once: true });
+        el.src = hd; el.load();
+      } else {
+        const im = new Image();
+        im.onload = () => { el.src = hd; res(); }; im.onerror = res; im.src = hd;
+      }
+    });
+  }
+  async function upgrade(holder, btn) {
+    if (btn.classList.contains("on") || btn.classList.contains("loading")) return;
+    btn.classList.add("loading"); btn.lastChild.textContent = "Cargando";
+    await Promise.all([...holder.querySelectorAll("[data-hd]")].map(swapHD));
+    btn.classList.remove("loading"); btn.classList.add("on");
+    btn.setAttribute("aria-pressed", "true"); btn.lastChild.textContent = "HD ✓";
+  }
+  function hdButton() {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "hd-btn"; b.title = "Cargar esta pieza en alta calidad";
+    b.setAttribute("aria-pressed", "false"); b.append(document.createTextNode("HD"));
+    return b;
+  }
+  $$(".folio .media, .folio .zoom").forEach(holder => {
+    if (!holder.querySelector("[data-hd]")) return;
+    const wrap = document.createElement("div"); wrap.className = "hd-wrap";
+    holder.replaceWith(wrap); wrap.append(holder);
+    const b = hdButton(); b.setAttribute("aria-label", "Ver esta pieza en alta calidad");
+    wrap.append(b);
+    b.addEventListener("click", e => { e.stopPropagation(); upgrade(holder, b); });
+  });
+
+  /* ---------- visor de fotos ---------- */
+  const lb = document.createElement("div");
+  lb.className = "lightbox"; lb.hidden = true;
+  lb.innerHTML = "<img alt=''><div class='lb-bar'><span>Toca fuera para cerrar</span></div>";
+  const lbImg = lb.querySelector("img"), lbBtn = hdButton();
+  lb.querySelector(".lb-bar").prepend(lbBtn);
+  document.body.appendChild(lb);
+  let lbSource = null;
+  lb.addEventListener("click", e => { if (!e.target.closest(".hd-btn")) lb.hidden = true; });
+  lbBtn.addEventListener("click", async e => {
+    e.stopPropagation();
+    if (!lbSource) return;
+    lbBtn.classList.add("loading"); lbBtn.lastChild.textContent = "Cargando";
+    await upgrade(lbSource, lbSource.closest(".hd-wrap").querySelector(".hd-btn"));
+    lbImg.src = lbSource.querySelector("img").src;
+    lbBtn.classList.remove("loading"); lbBtn.classList.add("on"); lbBtn.lastChild.textContent = "HD ✓";
+  });
+  document.addEventListener("click", e => {
+    const z = e.target.closest(".zoom"); if (!z) return;
+    const img = z.querySelector("img"); lbSource = z;
+    lbImg.src = img.src; lbImg.alt = img.alt;
+    const isHd = !!img.dataset.isHd;
+    lbBtn.classList.toggle("on", isHd); lbBtn.classList.remove("loading"); lbBtn.lastChild.textContent = isHd ? "HD ✓" : "Ver en HD";
+    lb.hidden = false;
+  });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !lb.hidden) lb.hidden = true; });
+
+  /* ---------- copiar datos de contacto ---------- */
+  function toast(msg) {
+    const t = document.createElement("div"); t.className = "toast"; t.textContent = msg; document.body.appendChild(t);
+    setTimeout(() => t.remove(), 1800);
+  }
+  $$("[data-copy]").forEach(b => b.addEventListener("click", () => {
+    const fallback = () => {
+      const v = b.parentElement.querySelector(".v"); const r = document.createRange(); r.selectNodeContents(v);
+      const s = getSelection(); s.removeAllRanges(); s.addRange(r); toast("Texto seleccionado");
+    };
+    try { navigator.clipboard.writeText(b.dataset.copy).then(() => toast("Copiado"), fallback); } catch (_) { fallback(); }
+  }));
+
+  /* ---------- inicio: el sobre cerrado; con #seccion se abre directamente ---------- */
+  state = "sealed";
+  seat();
+  const target = location.hash.slice(1);
+  if (target && target !== "inicio" && document.getElementById(target)) {
+    fast = true;
+    openLetter().then(() => document.getElementById(target).scrollIntoView());
+  }
+})();
+</script>
