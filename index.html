@@ -70,7 +70,7 @@ button { font: inherit; color: inherit; }
   padding: env(safe-area-inset-top, 0px) max(16px, env(safe-area-inset-right, 0px)) env(safe-area-inset-bottom, 0px) max(16px, env(safe-area-inset-left, 0px));
 }
 .env-wrap { display: grid; justify-items: center; gap: 34px; }
-.env { position: relative; width: min(780px, 90vw); aspect-ratio: 2 / 1; perspective: 2200px; container-type: inline-size; cursor: pointer; }
+.env { position: relative; width: min(780px, 90vw); aspect-ratio: 2 / 1; perspective: 2200px; container-type: inline-size; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; -webkit-user-select: none; user-select: none; }
 .env::before { /* sombra sobre la mesa */
   content: ""; position: absolute; inset: 1% .5% -.5% .5%; z-index: 0; border-radius: 6px;
   box-shadow: 0 2px 2px rgba(60, 35, 30, .14), 0 16px 26px -10px rgba(60, 35, 30, .3), 0 46px 70px -34px rgba(60, 35, 30, .4);
@@ -90,6 +90,8 @@ button { font: inherit; color: inherit; }
 .pk-l i { clip-path: url(#cp-left); background: var(--grain), linear-gradient(150deg, #f8f4ed, #ede6db); }
 .pk-r i { clip-path: url(#cp-right); background: var(--grain), linear-gradient(210deg, #eee7dc, #e2d8ca); }
 .pk-b i { clip-path: url(#cp-bottom); background: var(--grain), linear-gradient(to top, #e8dfd2, #f4eee5 70%); }
+/* penumbra dentro del sobre: la parte de la carta que aún está dentro queda en sombra y se ilumina al salir */
+.pk-in { position: absolute; inset: 0; clip-path: polygon(3.5% 0, 96.5% 0, 53.5% 50%, 50% 54%, 46.5% 50%); background: linear-gradient(to bottom, rgba(70, 40, 32, 0) 0, rgba(70, 40, 32, .1) 3%, rgba(70, 40, 32, .2) 30%, rgba(70, 40, 32, .3) 54%); }
 
 .flap { position: absolute; left: 0; right: 0; top: 0; height: 60%; z-index: 5; transform-origin: 50% 0; transform-style: preserve-3d; }
 .fface { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
@@ -121,9 +123,6 @@ button { font: inherit; color: inherit; }
 
 .addr { position: absolute; z-index: 7; left: 7%; bottom: 11%; transform: rotate(-2deg); font-family: var(--f-script); color: var(--ink-soft); font-size: 3.4cqw; line-height: 1.15; pointer-events: none; }
 .addr small { display: block; font-family: var(--f-sans); font-size: max(7px, 1.1cqw); letter-spacing: .28em; text-transform: uppercase; }
-.sticker { position: absolute; z-index: 7; right: 6%; bottom: 10%; width: 11%; transform: rotate(5deg); text-decoration: none; }
-.sticker .stamp-in { padding: 9%; }
-.sticker .qr-box { padding: 6%; }
 
 .intro-foot { display: grid; justify-items: center; gap: 12px; text-align: center; }
 .hint { margin: 0; font-family: var(--f-sans); font-size: .72rem; letter-spacing: .28em; text-transform: uppercase; color: var(--ink-soft); transition: opacity .4s ease; }
@@ -247,7 +246,19 @@ button { font: inherit; color: inherit; }
 .topnav a:hover, .topnav button:hover { color: var(--wine); background: rgba(140, 29, 43, .06); }
 .topnav .sig { font-family: var(--f-script); font-size: 1.25rem; letter-spacing: 0; text-transform: none; color: var(--wine); padding: 2px 12px 2px 10px; }
 .sealed .topnav { opacity: 0; pointer-events: none; }
-@media (max-width: 640px) { .topnav .sig { display: none; } }
+@media (max-width: 640px) {
+  .topnav .sig { display: none; }
+  /* en móvil, barra fija a todo lo ancho: siempre visible y sin tapar el contenido */
+  .topnav {
+    left: 0; right: 0; top: 0; transform: none; max-width: none; border-radius: 0; border-width: 0 0 1px;
+    padding: calc(5px + env(safe-area-inset-top, 0px)) max(8px, env(safe-area-inset-right, 0px)) 5px max(8px, env(safe-area-inset-left, 0px));
+    background: rgba(251, 249, 244, .94); box-shadow: 0 6px 18px -12px rgba(60, 35, 30, .45);
+    -webkit-overflow-scrolling: touch; overscroll-behavior-x: contain;
+  }
+  .topnav a, .topnav button { padding: 9px 11px; }
+  .folio { padding-top: calc(76px + env(safe-area-inset-top, 0px)); }
+  .page, .p1-home { scroll-margin-top: calc(64px + env(safe-area-inset-top, 0px)); }
+}
 
 /* revelado al hacer scroll */
 
@@ -259,14 +270,15 @@ button { font: inherit; color: inherit; }
 .oval .photo { position: absolute; z-index: 1; left: 20.3%; top: 13.9%; width: 59.6%; height: 72%; border-radius: 50%; overflow: hidden; background: #6e1420; }
 .oval .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 44% 50%; transform: scale(1.07); }
 .oval .photo::after { content: ""; position: absolute; inset: 0; border-radius: 50%; box-shadow: inset 0 0 0 1.5px rgba(70, 8, 16, .55), inset 0 3px 10px rgba(40, 0, 6, .55), inset 0 -2px 8px rgba(255, 200, 200, .12); pointer-events: none; }
-.oval-wrap { position: relative; }
-.oval-wrap .bts { position: absolute; right: -6%; bottom: -6%; width: 40%; aspect-ratio: 664 / 800; background: url(assets/web/frame-lace.webp) center / 100% 100%; transform: rotate(5deg); display: grid; place-items: center; }
+.oval-wrap { position: relative; max-width: 460px; }
+/* la foto pequeña queda apoyada encima del retrato, como una foto colocada sobre otra */
+.oval-wrap .bts { position: absolute; z-index: 2; right: -2%; bottom: 3%; width: 42%; aspect-ratio: 664 / 800; background: url(assets/web/frame-lace.webp) center / 100% 100%; transform: rotate(6deg); display: grid; place-items: center; filter: drop-shadow(0 3px 3px rgba(50, 20, 22, .22)) drop-shadow(0 14px 18px rgba(50, 20, 22, .28)); }
 .oval-wrap .bts img { width: 78%; height: 80%; object-fit: cover; }
 .about-text p { margin: 0 0 1em; max-width: 60ch; }
 .pull { margin: 0 0 1.4em; padding-left: 22px; border-left: 2px solid var(--rose); font-style: italic; font-size: 1.5rem; line-height: 1.3; }
 .skills { display: flex; flex-wrap: wrap; gap: 8px; margin: 1.6em 0 0; padding: 0; list-style: none; }
 .skills li { font-family: var(--f-sans); font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; border: 1px solid var(--line); padding: 7px 12px; border-radius: 999px; color: var(--ink-soft); }
-@media (max-width: 760px) { .about { grid-template-columns: minmax(0, 1fr); } .oval { max-width: 340px; } }
+@media (max-width: 760px) { .about { grid-template-columns: minmax(0, 1fr); } .oval, .oval-wrap { max-width: 340px; } }
 
 /* trabajos */
 .works { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 40px 28px; }
@@ -279,9 +291,9 @@ button { font: inherit; color: inherit; }
 a.media:hover .play, a.media:focus-visible .play { opacity: 1; }
 .work h4 { margin: 0; font-family: var(--f-serif); font-weight: 600; font-size: 1.3rem; letter-spacing: .04em; text-transform: uppercase; line-height: 1.2; }
 .work .kind { font-family: var(--f-sans); font-size: .66rem; letter-spacing: .22em; text-transform: uppercase; color: var(--rose); margin: 0 0 2px; }
-.work .credit { margin: 4px 0 0; color: var(--ink-soft); font-style: italic; }
+.work .credit { margin: 4px 0 0; color: var(--ink-soft); font-style: italic; overflow-wrap: anywhere; }
 .work .more { justify-self: start; font-family: var(--f-sans); font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--wine); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
-.reels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.reels { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px 22px; }
 .reels .media { aspect-ratio: 9 / 15; }
 @media (max-width: 760px) { .reels { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 460px) { .reels { grid-template-columns: minmax(0, 1fr); } }
@@ -304,6 +316,17 @@ a.media:hover .play, a.media:focus-visible .play { opacity: 1; }
 .hd-btn.on { background: var(--wine); color: #fff8f4; border-color: var(--wine); cursor: default; }
 .hd-btn.loading::before { content: ""; width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid currentColor; border-right-color: transparent; animation: spin .7s linear infinite; }
 @keyframes spin { to { transform: rotate(1turn); } }
+
+/* reel 2025 */
+.reel-frame { position: relative; margin: 34px auto 0; width: fit-content; max-width: 100%; background: #1b1213; box-shadow: 0 2px 3px rgba(40, 15, 18, .18), 0 22px 40px -18px rgba(40, 15, 18, .45); padding: clamp(6px, 1.2vw, 10px); }
+.reel-frame video { display: block; width: auto; height: auto; max-width: 100%; max-height: min(78vh, 760px); margin: 0 auto; background: #000; }
+.reel-frame.empty { width: 100%; aspect-ratio: 16 / 9; display: grid; place-items: center; }
+.reel-frame.empty video { display: none; }
+.reel-soon { display: none; text-align: center; color: #f3e9e4; padding: 24px; }
+.reel-frame.empty .reel-soon { display: grid; gap: 10px; justify-items: center; }
+.reel-soon b { font-family: var(--f-script); font-weight: 400; font-size: clamp(2.2rem, 6vw, 3.4rem); line-height: 1; color: #f0d6da; }
+.reel-soon small { font-family: var(--f-sans); font-size: .66rem; letter-spacing: .28em; text-transform: uppercase; opacity: .75; }
+.reel-cap { margin: 18px 0 0; text-align: center; font-family: var(--f-sans); font-size: .68rem; letter-spacing: .26em; text-transform: uppercase; color: var(--ink-soft); }
 
 /* foto fija */
 .series { margin-top: 60px; }
@@ -390,18 +413,16 @@ a.media:hover .play, a.media:focus-visible .play { opacity: 1; }
   <p class="intro-corner l">Portfolio creativo</p>
   <p class="intro-corner r">Based in Madrid · Available worldwide</p>
   <div class="env-wrap" id="env-wrap">
-    <div class="env" id="env">
+    <div class="env" id="env" role="button" tabindex="0" aria-label="Abrir el sobre y sacar la carta">
       <div class="e-back"><i class="liner gingham"></i></div>
       <!-- aquí se guarda el primer folio, doblado en tres -->
       <div class="pocket">
         <div class="pk pk-l"><i></i></div>
         <div class="pk pk-r"><i></i></div>
         <div class="pk pk-b"><i></i></div>
+        <b class="pk-in"></b>
       </div>
       <p class="addr">Remite: Tiny<small>Madrid · España</small></p>
-      <a class="sticker stamp" href="https://www.instagram.com/navarrotinyy/" target="_blank" rel="noopener" aria-label="Instagram de Lynnette Navarro (código QR)">
-        <span class="stamp-in gingham"><span class="qr-box" data-qr></span></span>
-      </a>
       <div class="flap" id="flap">
         <div class="fface ffront"><i></i><b class="shade"></b><div class="flap-name">Lynnette Navarro<small>Filmmaker · Fotógrafa · 1AC · 2AC</small></div></div>
         <div class="fface fback"><i></i><i class="liner gingham"></i><b class="shade"></b></div>
@@ -409,7 +430,7 @@ a.media:hover .play, a.media:focus-visible .play { opacity: 1; }
       <button class="seal" id="seal" aria-label="Romper el lacre y abrir la carta"><img src="assets/web/seal.webp" alt="" width="420" height="372"></button>
     </div>
     <div class="intro-foot">
-      <p class="hint">Pulsa el lacre para abrir la carta</p>
+      <p class="hint">Toca el sobre para abrir la carta</p>
       <button class="skip" id="skip">Saltar animación</button>
     </div>
   </div>
@@ -419,6 +440,7 @@ a.media:hover .play, a.media:focus-visible .play { opacity: 1; }
 <nav class="topnav" aria-label="Folios">
   <a class="sig" href="#inicio">Lynnette Navarro</a>
   <a href="#about">About me</a>
+  <a href="#reel">Reel 2025</a>
   <a href="#contenido">Content creator</a>
   <a href="#onset">On set</a>
   <a href="#fotofija">Foto-fija</a>
@@ -447,10 +469,11 @@ a.media:hover .play, a.media:focus-visible .play { opacity: 1; }
             <p class="toc-label">En esta carta</p>
             <ol class="toc">
               <li><a href="#about"><span>About me</span><i></i><em>folio 2</em></a></li>
-              <li><a href="#contenido"><span>Content creator</span><i></i><em>folio 3</em></a></li>
-              <li><a href="#onset"><span>On set · Dep. cámara</span><i></i><em>folio 4</em></a></li>
-              <li><a href="#fotofija"><span>Foto-fija</span><i></i><em>folio 5</em></a></li>
-              <li><a href="#contacto"><span>Contacto</span><i></i><em>folio 6</em></a></li>
+              <li><a href="#reel"><span>Reel 2025</span><i></i><em>folio 3</em></a></li>
+              <li><a href="#contenido"><span>Content creator</span><i></i><em>folio 4</em></a></li>
+              <li><a href="#onset"><span>On set · Dep. cámara</span><i></i><em>folio 5</em></a></li>
+              <li><a href="#fotofija"><span>Foto-fija</span><i></i><em>folio 6</em></a></li>
+              <li><a href="#contacto"><span>Contacto</span><i></i><em>folio 7</em></a></li>
             </ol>
             <p class="sign">Con cariño,<b>Tiny</b></p>
           </div>
@@ -503,8 +526,22 @@ a.media:hover .play, a.media:focus-visible .play { opacity: 1; }
     <p class="page-foot">— 2 —</p>
   </section>
 
+  <section class="page" id="reel" aria-labelledby="t-reel">
+    <header class="page-head"><span class="who">Lynnette Navarro</span><span class="fol">Folio 3 · Reel 2025</span></header>
+    <h2 id="t-reel">Reel 2025</h2>
+    <!-- el montaje va en assets/web/reel-2025.mp4 (MP4 H.264); se adapta solo a su proporción -->
+    <div class="reel-frame" id="reel-frame">
+      <video controls playsinline preload="metadata" aria-label="Reel 2025 de Lynnette Navarro">
+        <source src="assets/web/reel-2025.mp4#t=0.1" type="video/mp4">
+      </video>
+      <p class="reel-soon"><b>Reel 2025</b><small>Muy pronto</small></p>
+    </div>
+    <p class="reel-cap">Showreel · 2025</p>
+    <p class="page-foot">— 3 —</p>
+  </section>
+
   <section class="page" id="contenido" aria-labelledby="t-contenido">
-    <header class="page-head"><span class="who">Lynnette Navarro</span><span class="fol">Folio 3 · Contenido</span></header>
+    <header class="page-head"><span class="who">Lynnette Navarro</span><span class="fol">Folio 4 · Contenido</span></header>
     <h2 id="t-contenido">Content creator</h2>
     <p class="lede">Crear contenido no es solo publicar: es contar historias de personas y representar los valores de una marca. Me entusiasma la posibilidad de aportar mi creatividad y comunicar ideas conectando con las personas.</p>
 
@@ -522,6 +559,10 @@ a.media:hover .play, a.media:focus-visible .play { opacity: 1; }
         <a class="media" href="https://www.instagram.com/p/DZvHNxhAMiE/" target="_blank" rel="noopener"><img src="assets/web/c-butaca.webp" data-hd="assets/hd/c-butaca.png" alt="La butaca de mi cuarto" decoding="async"><span class="play">Ver post ↗</span></a>
         <div><p class="kind">Contenido</p><h4>La butaca de mi cuarto</h4><p class="credit">@Alexferránn · Dir. @Iggyetr</p></div>
       </article>
+      <article class="work">
+        <a class="media" href="https://www.instagram.com/reel/DfZ-aQYslFg/" target="_blank" rel="noopener"><img src="assets/web/c-nieves.webp" data-hd="assets/hd/c-nieves.png" alt="Evento Nieves x Juan Avellaneda: invitadas con el neceser burdeos de la colección" decoding="async"><span class="play">Ver reel ↗</span></a>
+        <div><p class="kind">Evento</p><h4>“Nieves x Juan Avellaneda”</h4><p class="credit">Para @nievesbynievesalvarez</p></div>
+      </article>
     </div>
 
     <div class="feature">
@@ -532,14 +573,14 @@ a.media:hover .play, a.media:focus-visible .play { opacity: 1; }
     </div>
 
     <div class="feature flip">
-      <div class="media"><img src="assets/web/c-hyatt.webp" data-hd="assets/hd/c-hyatt.png" alt="World of Hyatt: barra con arreglos florales, logos de Audi y Fórmula 1" decoding="async"></div>
+      <a class="media" href="https://www.instagram.com/reel/DecxE0Giy9N/" target="_blank" rel="noopener"><img src="assets/web/c-hyatt.webp" data-hd="assets/hd/c-hyatt.png" alt="World of Hyatt: barra con arreglos florales, logos de Audi y Fórmula 1" decoding="async"><span class="play">Ver reel ↗</span></a>
       <div class="work"><p class="kind">Evento de marca</p><h4>“World of Hyatt”</h4><p class="credit">Para @paraisofloral · @audi x @Fórmula1</p></div>
     </div>
-    <p class="page-foot">— 3 —</p>
+    <p class="page-foot">— 4 —</p>
   </section>
 
   <section class="page" id="onset" aria-labelledby="t-onset">
-    <header class="page-head"><span class="who">Lynnette Navarro</span><span class="fol">Folio 4 · On set</span></header>
+    <header class="page-head"><span class="who">Lynnette Navarro</span><span class="fol">Folio 5 · On set</span></header>
     <h2 id="t-onset">Dep. cámara</h2>
     <p class="lede">Disfruto del trabajo en equipo, del proceso audiovisual y de la parte técnica y creativa. Me motiva estar detrás de cámara, aprender de cada proyecto y aportar para conseguir el resultado final.</p>
 
@@ -586,27 +627,27 @@ a.media:hover .play, a.media:focus-visible .play { opacity: 1; }
         <div><p class="kind">Cortometraje</p><h4>Perspectivas</h4><p class="credit">Dir. Roberto López</p></div>
       </article>
       <article class="work">
-        <a class="media" href="https://www.instagram.com/p/DLQjfJAMhbnwQf_Dhc7BbY_fcu-dtl5Jv4W6Qo0/" target="_blank" rel="noopener"><img src="assets/web/s-ojos-corto.webp" data-hd="assets/hd/s-ojos-corto.jpg" alt="Ojos sobre mí, cortometraje" decoding="async"><span class="play">Ver pieza ↗</span></a>
-        <div><p class="kind">Cortometraje</p><h4>Ojos sobre mí</h4><p class="credit">Dir. Sofía Corral · DOP Sandra Ruiz</p></div>
+        <a class="media" href="https://www.instagram.com/p/DLQjfJAMhbnwQf_Dhc7BbY_fcu-dtl5Jv4W6Qo0/" target="_blank" rel="noopener"><img src="assets/web/s-ojos-corto.webp" data-hd="assets/hd/s-ojos-corto.jpg" alt="Lo que esconden tus ojos, cortometraje" decoding="async"><span class="play">Ver pieza ↗</span></a>
+        <div><p class="kind">Cortometraje</p><h4>Lo que esconden tus ojos</h4><p class="credit">Dir. Sofía Corral · DOP Sandra Ruiz</p></div>
       </article>
     </div>
 
     <h3><img class="ace" src="assets/web/card-ace.webp" alt="">Como 2AC</h3>
     <div class="works">
       <article class="work">
-        <a class="media" href="https://youtu.be/AJGlQbIBLj0" target="_blank" rel="noopener"><img src="assets/web/s-ojos-videoclip.webp" data-hd="assets/hd/s-ojos-videoclip.jpg" alt="Ojos sobre mí, videoclip" decoding="async"><span class="play">Ver en YouTube ↗</span></a>
-        <div><p class="kind">Videoclip</p><h4>Ojos sobre mí</h4><p class="credit">Dir. Eduardo Sánchez x Isaías Saldaña</p></div>
+        <a class="media" href="https://youtu.be/AJGlQbIBLj0" target="_blank" rel="noopener"><img src="assets/web/s-ojos-videoclip.webp" data-hd="assets/hd/s-ojos-videoclip.jpg" alt="Volver a caer, videoclip" decoding="async"><span class="play">Ver en YouTube ↗</span></a>
+        <div><p class="kind">Videoclip</p><h4>Volver a caer</h4><p class="credit">Dir. Eduardo Sánchez x Isaías Saldaña</p></div>
       </article>
       <article class="work">
         <div class="media"><img src="assets/web/s-camaleon.webp" data-hd="assets/hd/s-camaleon.png" alt="Equipo de rodaje de Camaleón" decoding="async"></div>
         <div><p class="kind">Teaser</p><h4>Camaleón</h4><p class="credit">Dir. Alberto Magdaleno</p></div>
       </article>
     </div>
-    <p class="page-foot">— 4 —</p>
+    <p class="page-foot">— 5 —</p>
   </section>
 
   <section class="page" id="fotofija" aria-labelledby="t-fotofija">
-    <header class="page-head"><span class="who">Lynnette Navarro</span><span class="fol">Folio 5 · Foto-fija</span></header>
+    <header class="page-head"><span class="who">Lynnette Navarro</span><span class="fol">Folio 6 · Foto-fija</span></header>
     <h2 id="t-fotofija">Fotofija</h2>
     <p class="lede">Combinar precisión, técnica y creatividad. Disfruto trabajar el instante para hacerlo efímero, componiendo y pensando en cada detalle.</p>
 
@@ -647,11 +688,11 @@ a.media:hover .play, a.media:focus-visible .play { opacity: 1; }
         <button class="zoom"><img src="assets/web/f-ecos-4.webp" data-hd="assets/hd/f-ecos-4.jpg" alt="Ecos de una bella época, foto 4" decoding="async"></button>
       </div>
     </section>
-    <p class="page-foot">— 5 —</p>
+    <p class="page-foot">— 6 —</p>
   </section>
 
   <section class="page" id="contacto" aria-labelledby="t-contacto">
-    <header class="page-head"><span class="who">Lynnette Navarro</span><span class="fol">Folio 6 · Contacto</span></header>
+    <header class="page-head"><span class="who">Lynnette Navarro</span><span class="fol">Folio 7 · Contacto</span></header>
     <h2 id="t-contacto">Let’s work together</h2>
     <div class="contact">
       <div class="qr-col">
@@ -677,7 +718,7 @@ a.media:hover .play, a.media:focus-visible .play { opacity: 1; }
       <p class="sign-off">Gracias por leer hasta aquí,<b>Tiny</b></p>
       <button class="reseal" id="reseal"><img src="assets/web/seal.webp" alt="" width="420" height="372">Guardar la carta en el sobre</button>
     </div>
-    <p class="page-foot">— 6 —</p>
+    <p class="page-foot">— 7 —</p>
   </section>
 </main>
 
@@ -812,26 +853,44 @@ a.media:hover .play, a.media:focus-visible .play { opacity: 1; }
     const shift = roomShift();
     if (shift) go(envWrap, [{ transform: "translateY(0px) scale(1)" }, { transform: `translateY(${shift}px) scale(1)` }], { duration: 1100, easing: "cubic-bezier(.45,0,.25,1)" });
     flapTo(true, 950);
-    await wait(600);
-    // se saca como una carta de verdad: los dedos la pellizcan, dos tirones con un leve giro
-    // y el sobre cede un poco con el roce, hasta que la carta sale entera
-    const g = geo(), y1 = g.out * .52;
-    const pos = (y, a) => `translate(0px, ${y}px) rotate(${a}deg) scale(1)`;
-    await go(p1, [{ transform: pos(0, 0) }, { transform: pos(-g.H * .05, -.4), offset: .55 }, { transform: pos(-g.H * .03, -.2) }], { duration: 380, easing: "ease-out" });
-    go(env, [{ transform: "translateY(0px) rotate(0deg)" }, { transform: "translateY(4px) rotate(.35deg)", offset: .5 }, { transform: "translateY(0px) rotate(0deg)" }], { duration: 760, easing: "ease-in-out" });
-    await go(p1, [{ transform: pos(-g.H * .03, -.2) }, { transform: pos(y1, -1.4) }], { duration: 760, easing: "cubic-bezier(.45,0,.4,1)" });
-    await wait(130);
-    go(env, [{ transform: "translateY(0px) rotate(0deg)" }, { transform: "translateY(3px) rotate(-.25deg)", offset: .45 }, { transform: "translateY(0px) rotate(0deg)" }], { duration: 820, easing: "ease-in-out" });
-    await go(p1, [{ transform: pos(y1, -1.4) }, { transform: pos(g.out, .5) }], { duration: 880, easing: "cubic-bezier(.3,0,.2,1)" });
-    await wait(160);
+    await wait(640);
+    // se saca como una carta de verdad: los dedos pellizcan el borde, la hoja sube asomando,
+    // roza al principio y luego se desliza sola fuera del bolsillo; el sobre cede un poco hacia abajo.
+    // Mientras está dentro queda en la penumbra del sobre (.pk-in) y su sombra crece al salir.
+    const g = geo();
+    const pos = (y, a, s = 1) => `translate(0px, ${y}px) rotate(${a}deg) scale(${s})`;
+    const shIn = "drop-shadow(0px -1px 1.5px rgba(60, 35, 30, .22)) drop-shadow(0px -4px 6px rgba(60, 35, 30, .08))";
+    const shOut = "drop-shadow(0px 3px 3px rgba(60, 35, 30, .2)) drop-shadow(0px 18px 22px rgba(60, 35, 30, .26))";
+    const y0 = -g.H * .055, PULL = 1650;
+    await go(p1, [{ transform: pos(0, 0) }, { transform: pos(y0 * 1.25, -.35), offset: .6 }, { transform: pos(y0, -.2) }], { duration: 460, easing: "cubic-bezier(.3,0,.3,1)" });
+    go(env, [{ transform: "translateY(0px) rotate(0deg)" }, { transform: "translateY(5px) rotate(.3deg)", offset: .3 }, { transform: "translateY(2px) rotate(-.18deg)", offset: .7 }, { transform: "translateY(0px) rotate(0deg)" }], { duration: PULL + 200, easing: "ease-in-out" });
+    go(p1, [{ filter: shIn }, { filter: shIn, offset: .55 }, { filter: shOut }], { duration: PULL, easing: "ease-in" });
+    await go(p1, [
+      { transform: pos(y0, -.2) },
+      { transform: pos(g.out * .3, -.9), offset: .32 },
+      { transform: pos(g.out * .78, -.6), offset: .72 },
+      { transform: pos(g.out, .3, 1.015) }
+    ], { duration: PULL, easing: "cubic-bezier(.42,0,.32,1)" });
 
-    // ya fuera, la carta se desliza recta hasta donde se va a leer; el sobre se retira
+    // ya fuera, sin pausa, la carta sigue su camino hasta donde se va a leer; el sobre se retira
     const r0 = p1.getBoundingClientRect(), st = stageRect();
     lift.append(p1);
-    Object.assign(p1.style, { position: "absolute", width: st.width + "px", left: st.left + "px", top: st.top + "px", zIndex: "", transformOrigin: "0 0", filter: "none" });
+    Object.assign(p1.style, { position: "absolute", width: st.width + "px", left: st.left + "px", top: st.top + "px", zIndex: "", transformOrigin: "0 0", filter: "none", transform: "none" });
     const r1 = p1.getBoundingClientRect();
-    go(envWrap, [{ transform: `translateY(${shift}px) scale(1)`, opacity: 1, filter: "blur(0px)" }, { transform: `translateY(${shift + innerHeight * .45}px) scale(.96)`, opacity: 0, filter: "blur(4px)" }], { duration: 1100, easing: "cubic-bezier(.5,0,.75,.35)" });
-    await go(p1, [{ transform: `${flip(r0, r1)} rotate(.5deg)` }, { transform: "translate(0px, 0px) scale(1) rotate(0deg)" }], { duration: 1150, easing: "cubic-bezier(.45,0,.2,1)" });
+    // la carta queda en la mano, algo más cerca: el sobre se deja en la mesa (se aleja, se desenfoca y se aparta)
+    // antes de que la carta baje, así nunca pasa por encima de él
+    const lifted = (dy, k) => `translate(${r0.left - r1.left}px, ${r0.top - r1.top + dy}px) scale(${(r0.width / r1.width) * k})`;
+    go(envWrap, [
+      { transform: `translateY(${shift}px) scale(1)`, opacity: 1, filter: "blur(0px)" },
+      { transform: `translateY(${shift + innerHeight * .08}px) scale(.95)`, opacity: .55, filter: "blur(4px)", offset: .3 },
+      { transform: `translateY(${shift + innerHeight * .24}px) scale(.9)`, opacity: 0, filter: "blur(7px)", offset: .55 },
+      { transform: `translateY(${shift + innerHeight * .28}px) scale(.9)`, opacity: 0, filter: "blur(7px)" }
+    ], { duration: 1150, easing: "cubic-bezier(.3,0,.5,1)" });
+    await go(p1, [
+      { transform: `${lifted(0, 1)} rotate(.3deg)` },
+      { transform: `${lifted(-g.H * .07, 1.03)} rotate(0deg)`, offset: .42 },
+      { transform: "translate(0px, 0px) scale(1) rotate(0deg)" }
+    ], { duration: 1500, easing: "cubic-bezier(.4,0,.25,1)" });
     p1.style.transform = "none";
     await go(intro, [{ opacity: 1 }, { opacity: 0 }], { duration: 350, easing: "ease" });
     intro.hidden = true;
@@ -855,7 +914,7 @@ a.media:hover .play, a.media:focus-visible .play { opacity: 1; }
     root.classList.remove("sealed");
     scrollTo(0, 0);
     $$(".folio > .page").forEach((pg, i) => go(pg, [{ opacity: 0, transform: "translateY(30px)" }, { opacity: 1, transform: "translateY(0px)" }], { duration: 700, delay: 100 + i * 80, easing: EASE_OUT }));
-    go(topnav, [{ opacity: 0, transform: "translate(-50%, -14px)" }, { opacity: 1, transform: "translate(-50%, 0px)" }], { duration: 600, delay: 200, easing: EASE_OUT });
+    go(topnav, [{ opacity: 0, translate: "0px -14px" }, { opacity: 1, translate: "0px 0px" }], { duration: 600, delay: 200, easing: EASE_OUT });
     intro.classList.remove("opening");
     state = "open"; fast = reduce;
   }
@@ -902,7 +961,7 @@ a.media:hover .play, a.media:focus-visible .play { opacity: 1; }
     await go(envWrap, [{ transform: `translateY(${shift + innerHeight * .42}px) scale(.94)`, opacity: 0, filter: "blur(5px)" }, { transform: `translateY(${shift}px) scale(1)`, opacity: 1, filter: "blur(0px)" }], { duration: 1000, easing: EASE_OUT });
     const rA = p1.getBoundingClientRect();
     env.insertBefore(p1, pocket);
-    Object.assign(p1.style, { position: "absolute", width: g.slotW + "px", left: g.padX + "px", top: (g.padTop - g.panelH) + "px", transform: "none", zIndex: 2 });
+    Object.assign(p1.style, { position: "absolute", width: g.slotW + "px", left: g.padX + "px", top: (g.padTop - g.panelH) + "px", transform: "none", zIndex: 2, filter: "" });
     const rB = p1.getBoundingClientRect();
     await go(p1, [{ transform: flip(rA, rB) }, { transform: `translate(0px, ${g.out}px) scale(1)` }], { duration: 950, easing: "cubic-bezier(.45,0,.25,1)" });
     await go(p1, [{ transform: `translate(0px, ${g.out}px) scale(1)` }, { transform: "translate(0px, 0px) scale(1)" }], { duration: 1050, easing: "cubic-bezier(.5,0,.3,1)" });
@@ -913,7 +972,8 @@ a.media:hover .play, a.media:focus-visible .play { opacity: 1; }
     state = "sealed"; fast = reduce;
   }
 
-  env.addEventListener("click", e => { if (!e.target.closest(".sticker")) openLetter(); });
+  env.addEventListener("click", openLetter);
+  env.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openLetter(); } });
   $("#reseal").addEventListener("click", closeLetter);
   $("#skip").addEventListener("click", () => {
     fast = true;
@@ -925,7 +985,18 @@ a.media:hover .play, a.media:focus-visible .play { opacity: 1; }
   // los vídeos solo se reproducen mientras se ven
   if ("IntersectionObserver" in window) {
     const vio = new IntersectionObserver(es => es.forEach(e => { const v = e.target; if (e.isIntersecting && state === "open") v.play().catch(() => {}); else v.pause(); }), { threshold: .3 });
-    $$(".folio video").forEach(v => vio.observe(v));
+    $$(".folio video:not([controls])").forEach(v => vio.observe(v));
+  }
+
+  /* ---------- reel 2025: respeta la proporción del vídeo; si aún no está el archivo, queda el hueco preparado ---------- */
+  const reelFrame = $("#reel-frame");
+  if (reelFrame) {
+    const rv = reelFrame.querySelector("video"), src = rv.querySelector("source");
+    const empty = () => reelFrame.classList.add("empty");
+    src.addEventListener("error", empty);
+    rv.addEventListener("error", empty);
+    rv.addEventListener("loadedmetadata", () => { reelFrame.classList.remove("empty"); if (!rv.videoWidth) empty(); });
+    if (rv.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) empty();
   }
 
   /* ---------- alta calidad bajo demanda ---------- */
